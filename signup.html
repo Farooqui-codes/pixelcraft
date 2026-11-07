@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Free PixelCraft Account</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body style="min-height: 100vh; display: flex; flex-direction: column;">
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" style="justify-content: space-between;">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+      </nav>
+    </div>
+  </header>
+
+  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem 1.5rem;">
+    <div class="card" style="width: 100%; max-width: 480px; padding: 2.25rem;">
+      <div style="text-align: center; margin-bottom: 1.75rem;">
+        <img src="/assets/logos/logo-icon.svg" alt="PixelCraft" style="width: 48px; height: 48px; margin: 0 auto 1rem;">
+        <h2>Create Free Workspace</h2>
+        <p style="font-size: 0.9rem; margin-top: 0.35rem;">Start creating, converting, and designing with 30 production tools.</p>
+      </div>
+
+      <div id="signup-error-alert" style="display: none; padding: 0.75rem 1rem; background: rgba(239, 68, 68, 0.15); border: 1px solid #EF4444; border-radius: var(--radius-sm); color: #EF4444; margin-bottom: 1.25rem; font-size: 0.85rem;"></div>
+
+      <form id="signup-form">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="signup-name" required placeholder="Alex Morgan" autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="signup-email" required placeholder="name@company.com" autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Create Password (Min 6 Characters)</label>
+          <input type="password" class="form-control" id="signup-password" required minlength="6" placeholder="••••••••" autocomplete="new-password">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Referral Code (Optional)</label>
+          <input type="text" class="form-control" id="signup-ref" placeholder="e.g. PC789AB">
+        </div>
+
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          By creating an account, you agree to our <a href="/terms.html" style="color: var(--brand-blue);">Terms of Service</a> and <a href="/privacy.html" style="color: var(--brand-blue);">Privacy Policy</a>.
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="signup-submit-btn" style="width: 100%;">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.75rem; font-size: 0.9rem; color: var(--text-secondary);">
+        Already have an account? <a href="/login.html" style="color: var(--brand-blue); font-weight: 600;">Log in</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="padding: 1.5rem 0; margin-top: 0;">
+    <div class="container" style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+      &copy; 2026 PixelCraft Technologies Inc. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const refCode = urlParams.get('ref');
+      if (refCode) {
+        document.getElementById('signup-ref').value = refCode;
+      }
+
+      const form = document.getElementById('signup-form');
+      const nameInput = document.getElementById('signup-name');
+      const emailInput = document.getElementById('signup-email');
+      const passInput = document.getElementById('signup-password');
+      const refInput = document.getElementById('signup-ref');
+      const errAlert = document.getElementById('signup-error-alert');
+      const submitBtn = document.getElementById('signup-submit-btn');
+
+      form.onsubmit = async (e) => {
+        e.preventDefault();
+        errAlert.style.display = 'none';
+
+        const full_name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passInput.value;
+        const referral_code = refInput.value.trim();
+
+        if (password.length < 6) {
+          errAlert.textContent = 'Password must be at least 6 characters.';
+          errAlert.style.display = 'block';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...';
+
+        try {
+          const res = await PixelCraftAPI.auth.signup({
+            full_name,
+            email,
+            password,
+            referral_code
+          });
+
+          PixelCraftAPI.setToken(res.token);
+          PixelCraftAuth.setUser(res.user);
+          PixelCraftUX.showToast('Account created successfully!', 'success');
+
+          setTimeout(() => {
+            window.location.href = res.user.role === 'admin' ? '/admin.html' : '/workspace.html';
+          }, 600);
+        } catch (err) {
+          errAlert.textContent = err.message || 'Could not complete registration.';
+          errAlert.style.display = 'block';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Create Account';
+        }
+      };
+    });
+  </script>
+</body>
+</html>
+

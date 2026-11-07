@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('pixelcraft_theme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Roadmap & Changelog — PixelCraft</title>
+  <meta name="description" content="Vote on upcoming tools, suggest new features, and review public changelog releases for PixelCraft.">
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  <link rel="manifest" href="/manifest.json">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/tools.html" class="nav-link"><i class="fa-solid fa-shapes"></i> <span data-i18n="nav_tools">All Tools</span></a></li>
+          <li><a href="/templates.html" class="nav-link"><i class="fa-solid fa-layer-group"></i> <span data-i18n="nav_marketplace">Templates</span></a></li>
+          <li><a href="/community.html" class="nav-link active"><i class="fa-solid fa-comments"></i> <span data-i18n="nav_community">Community</span></a></li>
+          <li><a href="/pricing.html" class="nav-link"><i class="fa-solid fa-crown"></i> <span data-i18n="nav_pricing">Pricing</span></a></li>
+        </ul>
+        <div class="nav-actions">
+          <select class="form-control lang-select" style="padding: 0.3rem 0.6rem; font-size: 0.85rem; width: auto;" title="Change Language">
+            <option value="en">English (EN)</option>
+            <option value="hi">हिंदी (HI)</option>
+            <option value="ur">اردو (UR)</option>
+          </select>
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div class="auth-guest-only" style="display: flex; gap: 0.5rem;">
+            <a href="/login.html" class="btn btn-ghost btn-sm" data-i18n="nav_login">Log in</a>
+            <a href="/signup.html" class="btn btn-primary btn-sm" data-i18n="nav_signup">Get Started</a>
+          </div>
+          <div class="auth-user-only" style="display: none; align-items: center; gap: 0.5rem;">
+            <a href="/workspace.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-house-laptop"></i> Workspace</a>
+            <button class="btn btn-ghost btn-sm btn-logout" style="color: #EF4444;"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="page-content" style="padding-top: 3rem; padding-bottom: 5rem;">
+    <div class="container">
+      
+      <!-- HERO SECTION -->
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <span class="badge badge-pro" style="margin-bottom: 1rem;"><i class="fa-solid fa-users"></i> COMMUNITY ROADMAP</span>
+        <h1 style="font-size: 2.8rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem;">
+          Shape the Future of <span class="brand-gradient-text">PixelCraft</span>
+        </h1>
+        <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.6;">
+          Vote on features, submit creative requests, and inspect public release notes as we continually expand the platform.
+        </p>
+
+        <!-- Tab Nav -->
+        <div style="display: inline-flex; background: var(--bg-surface); padding: 0.35rem; border-radius: 999px; border: 1px solid var(--border-subtle); margin-top: 1.5rem; gap: 0.5rem;">
+          <button class="btn btn-sm btn-primary comm-tab-btn active" data-target="tab-roadmap"><i class="fa-solid fa-lightbulb"></i> Feature Requests & Voting</button>
+          <button class="btn btn-sm btn-ghost comm-tab-btn" data-target="tab-changelog"><i class="fa-solid fa-clock-rotate-left"></i> Public Changelog</button>
+        </div>
+      </div>
+
+      <!-- TAB 1: ROADMAP & FEATURE REQUESTS -->
+      <section id="tab-roadmap" class="comm-tab-pane">
+        <div style="display: grid; grid-template-columns: 1fr 340px; gap: 2rem; align-items: flex-start;">
+          
+          <!-- LEFT: FEATURE REQUESTS LIST -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+              <h2 style="font-size: 1.4rem;">Top Community Proposals</h2>
+              <div style="display: flex; gap: 0.5rem;">
+                <select id="req-filter-status" class="form-control" style="width: 150px; font-size: 0.85rem;">
+                  <option value="all">All Statuses</option>
+                  <option value="open">Open</option>
+                  <option value="planned">Planned</option>
+                  <option value="under_review">Under Review</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="feature-requests-list" style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="text-align: center; color: var(--text-muted); padding: 3rem;">Loading community requests...</div>
+            </div>
+          </div>
+
+          <!-- RIGHT: SUBMISSION FORM & SPOTLIGHT -->
+          <div>
+            <!-- SUBMIT REQUEST CARD -->
+            <div class="card" style="padding: 1.75rem; margin-bottom: 2rem; border-top: 4px solid var(--accent-purple);">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-plus-circle" style="color: var(--accent-purple);"></i> Suggest a Feature</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Have an idea for a tool, export format, or workflow? Let us know!</p>
+
+              <form id="form-feature-request" onsubmit="submitFeatureRequest(event)">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label class="form-label">Feature Title</label>
+                  <input type="text" id="req-input-title" class="form-control" placeholder="e.g. Batch SVG Watermarking" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label class="form-label">Category</label>
+                  <select id="req-input-cat" class="form-control">
+                    <option value="tools">Studio Tools</option>
+                    <option value="integrations">Third-Party Integrations</option>
+                    <option value="brand">Brand Kit & Styling</option>
+                    <option value="export">File Export Formats</option>
+                    <option value="general">General UX</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label class="form-label">Detailed Proposal</label>
+                  <textarea id="req-input-desc" class="form-control" rows="3" placeholder="Explain the workflow and why this is valuable..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                  <i class="fa-solid fa-paper-plane"></i> Submit Proposal
+                </button>
+              </form>
+            </div>
+
+            <!-- TEMPLATE OF THE WEEK SPOTLIGHT -->
+            <div class="card" style="padding: 1.5rem; background: linear-gradient(135deg, rgba(121, 87, 255, 0.1), rgba(16, 185, 129, 0.1)); border: 1px solid var(--border-subtle);">
+              <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #F59E0B; margin-bottom: 0.75rem;"><i class="fa-solid fa-star"></i> TEMPLATE OF THE WEEK</span>
+              <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Corporate Consulting Invoice</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">High-converting commercial invoice with automatic GST calculation and brand kit integration.</p>
+              <a href="/templates.html" class="btn btn-secondary btn-sm" style="width: 100%;">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Open in Marketplace
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB 2: PUBLIC CHANGELOG -->
+      <section id="tab-changelog" class="comm-tab-pane" style="display: none; max-width: 800px; margin: 0 auto;">
+        <div id="changelog-timeline" style="display: flex; flex-direction: column; gap: 2rem;">
+          <div style="text-align: center; color: var(--text-muted); padding: 3rem;">Loading release notes...</div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <p class="brand-tagline" data-i18n="footer_tagline">Create. Convert. Design. Simplify.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/tools.html">30 Tools</a>
+        <a href="/templates.html">Templates</a>
+        <a href="/community.html">Community</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 PixelCraft Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/notifications.js"></script>
+  <script src="/assets/js/pwa.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    let featureRequests = [];
+
+    async function loadRequests() {
+      const statusFilter = document.getElementById('req-filter-status').value;
+      const listContainer = document.getElementById('feature-requests-list');
+
+      try {
+        const query = statusFilter !== 'all' ? `status=${statusFilter}` : '';
+        const res = await PixelCraftAPI.community.requests(query);
+        featureRequests = res.requests || [];
+        renderRequestsList();
+      } catch (err) {
+        listContainer.innerHTML = `<div style="color: #EF4444; padding: 2rem;">Failed to load requests: ${err.message}</div>`;
+      }
+    }
+
+    function renderRequestsList() {
+      const listContainer = document.getElementById('feature-requests-list');
+      if (featureRequests.length === 0) {
+        listContainer.innerHTML = `<div class="card" style="padding: 2.5rem; text-align: center; color: var(--text-muted);">No proposals found matching this filter. Be the first to suggest one!</div>`;
+        return;
+      }
+
+      const statusBadges = {
+        open: '<span class="badge" style="background: rgba(59, 130, 246, 0.15); color: #3B82F6;">Open Proposal</span>',
+        under_review: '<span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #F59E0B;">Under Review</span>',
+        planned: '<span class="badge badge-pro">Planned Roadmap</span>',
+        completed: '<span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10B981;"><i class="fa-solid fa-check"></i> Completed</span>'
+      };
+
+      listContainer.innerHTML = featureRequests.map(r => {
+        const hasVoted = r.hasUpvoted;
+        return `
+          <div class="card card-interactive" style="padding: 1.25rem 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start;">
+            <!-- Upvote Button -->
+            <button class="btn ${hasVoted ? 'btn-primary' : 'btn-secondary'} btn-sm" onclick="voteRequest('${r.id}')" style="display: flex; flex-direction: column; align-items: center; min-width: 58px; padding: 0.5rem 0.6rem; border-radius: var(--radius-md);">
+              <i class="fa-solid fa-chevron-up" style="font-size: 0.9rem;"></i>
+              <strong style="font-size: 1rem; margin-top: 0.2rem;">${r.upvotes || 0}</strong>
+            </button>
+
+            <!-- Proposal Content -->
+            <div style="flex: 1;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+                <h3 style="font-size: 1.15rem; margin: 0;">${r.title}</h3>
+                <div>${statusBadges[r.status] || ''}</div>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.5rem 0 0.75rem 0; line-height: 1.45;">${r.description}</p>
+              <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: var(--text-muted);">
+                <span><i class="fa-solid fa-user"></i> ${r.author_name || 'Creator'}</span>
+                <span><i class="fa-solid fa-tag"></i> ${r.category}</span>
+                <span><i class="fa-regular fa-clock"></i> ${new Date(r.created_at).toLocaleDateString()}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function voteRequest(id) {
+      if (!PixelCraftAuth.isLoggedIn()) {
+        PixelCraftUX.showToast('Please sign in to vote on community feature requests.', 'info');
+        return;
+      }
+
+      try {
+        const res = await PixelCraftAPI.community.vote(id);
+        const item = featureRequests.find(r => r.id === id);
+        if (item) {
+          item.upvotes = res.upvotes;
+          item.hasUpvoted = res.hasUpvoted;
+          renderRequestsList();
+        }
+        PixelCraftUX.showToast(res.message, 'success');
+      } catch (err) {
+        PixelCraftUX.showToast(err.message, 'error');
+      }
+    }
+
+    async function submitFeatureRequest(e) {
+      e.preventDefault();
+      if (!PixelCraftAuth.isLoggedIn()) {
+        PixelCraftUX.showToast('Please sign in to propose new features.', 'info');
+        setTimeout(() => window.location.href = '/login.html', 1200);
+        return;
+      }
+
+      const titleInput = document.getElementById('req-input-title');
+      const descInput = document.getElementById('req-input-desc');
+      const catInput = document.getElementById('req-input-cat');
+
+      try {
+        await PixelCraftAPI.community.createRequest({
+          title: titleInput.value.trim(),
+          description: descInput.value.trim(),
+          category: catInput.value
+        });
+
+        PixelCraftUX.showToast('Your proposal has been published!', 'success');
+        titleInput.value = '';
+        descInput.value = '';
+        loadRequests();
+      } catch (err) {
+        PixelCraftUX.showToast(err.message, 'error');
+      }
+    }
+
+    async function loadChangelog() {
+      const container = document.getElementById('changelog-timeline');
+      try {
+        const res = await PixelCraftAPI.community.changelog();
+        const logs = res.changelog || [];
+
+        if (logs.length === 0) {
+          container.innerHTML = `<div class="card" style="padding: 2rem; text-align: center; color: var(--text-muted);">No changelog entries found.</div>`;
+          return;
+        }
+
+        container.innerHTML = logs.map(c => `
+          <div class="card" style="padding: 2rem; border-left: 4px solid var(--accent-purple);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+              <div>
+                <span class="badge badge-pro" style="margin-right: 0.5rem;">v${c.version}</span>
+                <strong style="font-size: 1.25rem;">${c.title}</strong>
+              </div>
+              <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fa-regular fa-calendar"></i> ${c.release_date}</span>
+            </div>
+
+            <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0; display: flex; flex-direction: column; gap: 0.6rem;">
+              ${(c.changes || []).map(ch => {
+                const badgeColor = ch.type === 'feature' ? '#10B981' : (ch.type === 'security' ? '#7957FF' : '#35B9FF');
+                return `
+                  <li style="display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.9rem; line-height: 1.45;">
+                    <span class="badge" style="background: rgba(255,255,255,0.08); color: ${badgeColor}; font-size: 0.7rem; text-transform: uppercase;">${ch.type}</span>
+                    <span>${ch.text}</span>
+                  </li>
+                `;
+              }).join('')}
+            </ul>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.innerHTML = `<div style="color: #EF4444; padding: 2rem;">Failed to load changelog: ${err.message}</div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadRequests();
+      loadChangelog();
+
+      document.getElementById('req-filter-status').onchange = loadRequests;
+
+      // Tab switcher
+      const tabBtns = document.querySelectorAll('.comm-tab-btn');
+      const tabPanes = document.querySelectorAll('.comm-tab-pane');
+
+      tabBtns.forEach(btn => {
+        btn.onclick = () => {
+          tabBtns.forEach(b => {
+            b.classList.remove('active', 'btn-primary');
+            b.classList.add('btn-ghost');
+          });
+          tabPanes.forEach(p => p.style.display = 'none');
+
+          btn.classList.add('active', 'btn-primary');
+          btn.classList.remove('btn-ghost');
+
+          const target = document.getElementById(btn.dataset.target);
+          if (target) target.style.display = 'block';
+        };
+      });
+    });
+  </script>
+</body>
+</html>
+

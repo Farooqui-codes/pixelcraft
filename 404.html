@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found | PixelCraft</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body style="min-height: 100vh; display: flex; flex-direction: column;">
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" style="justify-content: space-between;">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+      </nav>
+    </div>
+  </header>
+
+  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; text-align: center;">
+    <div style="max-width: 580px;">
+      <div style="font-size: 5.5rem; font-weight: 800; line-height: 1; margin-bottom: 1rem;" class="text-gradient">
+        404
+      </div>
+      <h2 style="margin-bottom: 1rem;">Page Not Found</h2>
+      <p style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 2rem;">
+        The page or tool you're looking for doesn't exist, has been relocated, or is temporarily unavailable.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="/index.html" class="btn btn-primary"><i class="fa-solid fa-house"></i> Return Home</a>
+        <a href="/tools.html" class="btn btn-secondary"><i class="fa-solid fa-toolbox"></i> Explore 30 Tools</a>
+        <a href="/workspace.html" class="btn btn-ghost"><i class="fa-solid fa-house-laptop"></i> User Workspace</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="padding: 1.5rem 0; margin-top: 0;">
+    <div class="container" style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+      &copy; 2026 PixelCraft Technologies Inc. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+</body>
+</html>
+

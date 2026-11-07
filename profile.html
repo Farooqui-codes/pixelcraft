@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile — PixelCraft</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container-fluid">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="user-name-display" style="font-weight: 600;">Creator</span>
+            <button class="btn btn-ghost btn-sm btn-logout" style="color: #EF4444;"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <ul class="sidebar-nav">
+        <li><a href="/workspace.html" class="sidebar-link"><i class="fa-solid fa-house-laptop"></i> <span class="sidebar-text">Overview</span></a></li>
+        <li><a href="/projects.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> <span class="sidebar-text">My Projects</span></a></li>
+        <li><a href="/favorites.html" class="sidebar-link"><i class="fa-solid fa-star"></i> <span class="sidebar-text">Favorites</span></a></li>
+        <li><a href="/activity.html" class="sidebar-link"><i class="fa-solid fa-clock-rotate-left"></i> <span class="sidebar-text">Recent Activity</span></a></li>
+        <li><a href="/tools.html" class="sidebar-link"><i class="fa-solid fa-toolbox"></i> <span class="sidebar-text">All 30 Tools</span></a></li>
+        <li><a href="/profile.html" class="sidebar-link active"><i class="fa-solid fa-user-gear"></i> <span class="sidebar-text">User Profile</span></a></li>
+        <li><a href="/settings.html" class="sidebar-link"><i class="fa-solid fa-sliders"></i> <span class="sidebar-text">Settings</span></a></li>
+        <li><a href="/pricing.html" class="sidebar-link"><i class="fa-solid fa-tags"></i> <span class="sidebar-text">Upgrade Plan</span></a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div style="max-width: 760px; margin: 0 auto;">
+        <div style="margin-bottom: 2rem;">
+          <h2>Account Profile</h2>
+          <p class="section-subtitle" style="margin-top: 0.25rem;">Manage your creator identity, display name, and preferences.</p>
+        </div>
+
+        <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
+          <form id="profile-form">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="profile-name">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email Address (Read-Only)</label>
+              <input type="email" class="form-control" id="profile-email" disabled style="opacity: 0.7; cursor: not-allowed;">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Primary Creative Usage</label>
+              <select class="form-control" id="profile-usage">
+                <option value="creator">Social Media Content Creator</option>
+                <option value="business">Freelancer / Small Business Owner</option>
+                <option value="developer">Developer & Tech Enthusiast</option>
+                <option value="student">Student / Educator</option>
+                <option value="general">Multi-Tool General User</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Business / Brand Name (Optional)</label>
+              <input type="text" class="form-control" id="profile-business" placeholder="e.g. Pixel Studio">
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-save-profile" style="margin-top: 0.5rem;">
+              <i class="fa-solid fa-floppy-disk"></i> Save Profile Changes
+            </button>
+          </form>
+        </div>
+
+        <!-- REFERRAL LINK BOX -->
+        <div class="card" style="padding: 1.75rem; background: var(--bg-surface); border: 1px solid var(--border-subtle);">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <i class="fa-solid fa-gift" style="font-size: 1.5rem; color: var(--brand-purple);"></i>
+            <div>
+              <h4 style="margin: 0;">Your Personal Referral Link</h4>
+              <p style="font-size: 0.85rem; margin: 0; color: var(--text-muted);">Share PixelCraft with your friends and audience.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <input type="text" class="form-control" id="my-referral-link" readonly style="font-family: var(--font-mono); font-size: 0.85rem;">
+            <button class="btn btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('my-referral-link').value); PixelCraftUX.showToast('Referral link copied!', 'success');">
+              <i class="fa-solid fa-copy"></i> Copy
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!PixelCraftAuth.requireAuth()) return;
+      const user = PixelCraftAuth.getUser();
+
+      const nameInput = document.getElementById('profile-name');
+      const emailInput = document.getElementById('profile-email');
+      const usageSelect = document.getElementById('profile-usage');
+      const bizInput = document.getElementById('profile-business');
+      const refLinkInput = document.getElementById('my-referral-link');
+      const form = document.getElementById('profile-form');
+
+      nameInput.value = user.full_name || '';
+      emailInput.value = user.email || '';
+      usageSelect.value = user.primary_use || 'general';
+      bizInput.value = user.business_name || '';
+      refLinkInput.value = `${window.location.origin}/signup.html?ref=${user.referral_code || ''}`;
+
+      form.onsubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const res = await PixelCraftAPI.auth.updateProfile({
+            full_name: nameInput.value.trim(),
+            primary_use: usageSelect.value,
+            business_name: bizInput.value.trim()
+          });
+          PixelCraftAuth.setUser(res.user);
+          PixelCraftUX.showToast('Profile updated successfully!', 'success');
+        } catch (err) {
+          PixelCraftUX.showToast(err.message, 'error');
+        }
+      };
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('pixelcraft_theme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Category — PixelCraft Creative Suite</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/tools.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> All Tools</a></li>
+          <li><a href="/category.html?cat=image" class="nav-link" id="nav-cat-image">Image</a></li>
+          <li><a href="/category.html?cat=pdf" class="nav-link" id="nav-cat-pdf">PDF</a></li>
+          <li><a href="/category.html?cat=creator" class="nav-link" id="nav-cat-creator">Creator</a></li>
+          <li><a href="/category.html?cat=business" class="nav-link" id="nav-cat-business">Business</a></li>
+          <li><a href="/pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div class="auth-guest-only" style="display: flex; gap: 0.5rem;">
+            <a href="/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="/signup.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="auth-user-only" style="display: none;">
+            <a href="/workspace.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-house-laptop"></i> Workspace</a>
+          </div>
+          <button class="btn-icon mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CATEGORY HERO -->
+  <div class="section" style="padding-top: 3.5rem; padding-bottom: 2rem;">
+    <div class="container">
+      <div style="text-align: center; max-width: 760px; margin: 0 auto;">
+        <span class="badge" id="category-badge" style="margin-bottom: 0.75rem; font-size: 0.85rem; padding: 0.35rem 0.85rem;">Studio</span>
+        <h1 id="category-title" style="margin-bottom: 0.75rem;">Creative Studio</h1>
+        <p class="section-subtitle" id="category-desc">Professional tools with client-first privacy and instant downloads.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STUDIO TOOLS -->
+  <div class="section" style="padding-top: 1rem; padding-bottom: 5rem;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;" id="category-tools-grid"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 PixelCraft Technologies Inc. All rights reserved.</span>
+        <div>Create. Convert. Design. Simplify. • Studio Suites</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/tools-engine.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cat = urlParams.get('cat') || 'image';
+
+      const CATEGORY_INFO = {
+        image: { title: 'Image Studio', desc: 'Powerful browser-based image compression, interactive cropping, dimension resizing, format conversion, and eyedropper color sampling.', badgeClass: 'cat-image', accent: 'var(--accent-image)' },
+        pdf: { title: 'PDF & Document Studio', desc: 'Secure, zero-upload PDF merging, page splitting, stream compression, and bidirectional image converters.', badgeClass: 'cat-pdf', accent: 'var(--accent-pdf)' },
+        creator: { title: 'Creator Studio', desc: 'Design high-converting Instagram posts, vertical stories, bold YouTube thumbnails, and tailored copywriting captions.', badgeClass: 'cat-creator', accent: 'var(--accent-creator)' },
+        business: { title: 'Business Studio', desc: 'Generate branded tax invoices, commercial quotations, calculate Indian GST (CGST/SGST/IGST), and craft modern business cards.', badgeClass: 'cat-business', accent: 'var(--accent-business)' },
+        qr: { title: 'QR Code Studio', desc: 'Generate scannable, high-contrast QR codes for URLs, direct WhatsApp chats, Wi-Fi passwords, and standard UPI BHIM links.', badgeClass: 'cat-qr', accent: 'var(--accent-qr)' },
+        invitation: { title: 'Invitation Studio', desc: 'Craft personalized digital invitation cards for weddings, birthdays, and Islamic religious celebrations with Arabic typography.', badgeClass: 'cat-invitation', accent: 'var(--accent-invitation)' },
+        text: { title: 'Text Studio', desc: 'Count words and characters in real time, calculate estimated reading times, convert string casing formats, and generate dummy Lorem Ipsum.', badgeClass: 'cat-text', accent: 'var(--accent-text)' },
+        developer: { title: 'Developer Studio', desc: 'Prettify and validate JSON syntax with line error tracking, and encode/decode binary files and strings to Base64 data URIs.', badgeClass: 'cat-developer', accent: 'var(--accent-developer)' }
+      };
+
+      const info = CATEGORY_INFO[cat] || CATEGORY_INFO['image'];
+      document.title = `${info.title} — PixelCraft`;
+      document.getElementById('category-title').textContent = info.title;
+      document.getElementById('category-desc').textContent = info.desc;
+      const badge = document.getElementById('category-badge');
+      badge.textContent = info.title;
+      badge.className = `badge ${info.badgeClass}`;
+
+      const activeNav = document.getElementById(`nav-cat-${cat}`);
+      if (activeNav) activeNav.classList.add('active');
+
+      const tools = (window.PIXELCRAFT_TOOLS || []).filter(t => t.category === cat);
+      const grid = document.getElementById('category-tools-grid');
+
+      grid.innerHTML = tools.map((t, idx) => `
+        <div class="card card-interactive reveal-on-scroll reveal-delay-${(idx % 4) + 1}" data-category="${t.category}" onclick="window.location.href='/tool.html?id=${t.id}'">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.85rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.1); color: ${t.accentColor}; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              <i class="fa-solid ${t.icon}"></i>
+            </div>
+            <span class="badge cat-${t.category}">AVAILABLE</span>
+          </div>
+          <h4 style="margin-bottom: 0.35rem; font-size: 1.15rem;">${t.name}</h4>
+          <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.25rem;">${t.description}</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle);">
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem;"></i></span>
+            <span class="badge badge-free">FREE</span>
+          </div>
+        </div>
+      `).join('');
+
+      if (window.PixelCraftUX && PixelCraftUX.initScrollReveal) {
+        PixelCraftUX.initScrollReveal();
+      }
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('pixelcraft_theme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixelCraft — Create. Convert. Design. Simplify. | Creative Productivity Suite</title>
+  <meta name="description" content="PixelCraft is the all-in-one online creative productivity SaaS platform with 30 production tools for images, PDFs, social media, invoices, QR codes, invitations, text, and developers.">
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+          <span class="badge badge-pro" style="font-size: 0.65rem; padding: 2px 7px; letter-spacing: 0.5px;">SAAS 2.0</span>
+        </a>
+
+        <ul class="nav-links">
+          <!-- Tools Mega Dropdown -->
+          <li class="nav-dropdown">
+            <a href="/tools.html" class="nav-link">
+              <i class="fa-solid fa-layer-group" style="color: var(--brand-purple);"></i>
+              <span>Tools</span>
+              <i class="fa-solid fa-chevron-down nav-dropdown-arrow" style="font-size: 0.7rem; opacity: 0.7;"></i>
+            </a>
+            <div class="nav-dropdown-menu">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1rem;">
+                <a href="/category.html?cat=image" class="nav-dropdown-item" style="display: flex; gap: 0.75rem; padding: 0.65rem; border-radius: var(--radius-sm); transition: background 0.15s;">
+                  <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(139, 92, 246, 0.15); color: var(--accent-image); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-image"></i></div>
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary);">Image Studio</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Compress, resize, convert & crop</div>
+                  </div>
+                </a>
+                <a href="/category.html?cat=pdf" class="nav-dropdown-item" style="display: flex; gap: 0.75rem; padding: 0.65rem; border-radius: var(--radius-sm); transition: background 0.15s;">
+                  <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(56, 189, 248, 0.15); color: var(--accent-pdf); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-file-pdf"></i></div>
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary);">PDF Studio</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Merge, split, compress & export</div>
+                  </div>
+                </a>
+                <a href="/category.html?cat=creator" class="nav-dropdown-item" style="display: flex; gap: 0.75rem; padding: 0.65rem; border-radius: var(--radius-sm); transition: background 0.15s;">
+                  <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(244, 63, 94, 0.15); color: var(--accent-creator); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary);">Creator Studio</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Instagram, thumbnails & graphics</div>
+                  </div>
+                </a>
+                <a href="/category.html?cat=business" class="nav-dropdown-item" style="display: flex; gap: 0.75rem; padding: 0.65rem; border-radius: var(--radius-sm); transition: background 0.15s;">
+                  <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(16, 185, 129, 0.15); color: var(--accent-business); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-briefcase"></i></div>
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary);">Business Studio</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Invoices, quotations & visiting cards</div>
+                  </div>
+                </a>
+                <a href="/category.html?cat=qr" class="nav-dropdown-item" style="display: flex; gap: 0.75rem; padding: 0.65rem; border-radius: var(--radius-sm); transition: background 0.15s;">
+                  <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(20, 184, 166, 0.15); color: var(--accent-qr); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-qrcode"></i></div>
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary);">QR Studio</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Dynamic URL, WhatsApp & UPI codes</div>
+                  </div>
+                </a>
+                <a href="/category.html?cat=developer" class="nav-dropdown-item" style="display: flex; gap: 0.75rem; padding: 0.65rem; border-radius: var(--radius-sm); transition: background 0.15s;">
+                  <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(6, 182, 212, 0.15); color: var(--accent-developer); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-code"></i></div>
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary);">Developer & Text</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">JSON validator, Base64 & word counters</div>
+                  </div>
+                </a>
+              </div>
+              <div style="padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-bolt" style="color: var(--accent-text);"></i> All 30 tools zero-install & free</span>
+                <a href="/tools.html" style="font-size: 0.825rem; font-weight: 700; color: var(--brand-purple); display: inline-flex; align-items: center; gap: 0.35rem;">Browse Complete Directory <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="/templates.html" class="nav-link">
+              <i class="fa-solid fa-shapes"></i>
+              <span>Templates</span>
+              <span class="badge badge-free" style="font-size: 0.68rem; padding: 1px 6px;">17+</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/pricing.html" class="nav-link">
+              <i class="fa-solid fa-tags"></i>
+              <span>Pricing</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/community.html" class="nav-link">
+              <i class="fa-solid fa-bullhorn"></i>
+              <span>Roadmap</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <div id="i18n-lang-selector-container"></div>
+          
+          <button class="btn btn-secondary btn-sm open-cmd-palette" style="gap: 0.6rem;" title="Search tools (Ctrl+K)">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span class="desktop-only-inline">Search</span>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+
+          <button class="btn-icon theme-toggle-btn" title="Toggle Dark / Light Theme">
+            <i class="fa-solid fa-sun theme-toggle-icon"></i>
+          </button>
+
+          <!-- Guest State -->
+          <div class="auth-guest-only" style="display: flex; gap: 0.6rem; align-items: center;">
+            <a href="/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="/signup.html" class="btn btn-primary btn-sm btn-shine">
+              <span>Get Started</span>
+              <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+          </div>
+
+          <!-- Authenticated User State -->
+          <div class="auth-user-only" style="display: none; align-items: center; gap: 0.6rem;">
+            <a href="/workspace.html" class="btn btn-secondary btn-sm" style="gap: 0.5rem;">
+              <i class="fa-solid fa-house-laptop"></i>
+              <span>Workspace</span>
+            </a>
+            <span class="badge user-plan-badge badge-pro">FREE</span>
+          </div>
+
+          <button class="btn-icon mobile-nav-toggle" aria-label="Open Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer-backdrop">
+    <div class="mobile-drawer">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <img src="/assets/logos/logo.svg" alt="PixelCraft" style="height: 34px;">
+        <button class="btn-icon mobile-nav-toggle"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; font-size: 1.05rem; font-weight: 600;">
+        <li><a href="/tools.html"><i class="fa-solid fa-layer-group" style="width: 24px; color: var(--brand-purple);"></i> All 30 Studio Tools</a></li>
+        <li><a href="/templates.html"><i class="fa-solid fa-shapes" style="width: 24px; color: var(--accent-creator);"></i> Template Marketplace</a></li>
+        <li><a href="/workspace.html"><i class="fa-solid fa-house-laptop" style="width: 24px; color: var(--brand-blue);"></i> My Workspace</a></li>
+        <li><a href="/pricing.html"><i class="fa-solid fa-tags" style="width: 24px; color: var(--accent-business);"></i> Pricing & Plans</a></li>
+        <li><a href="/community.html"><i class="fa-solid fa-bullhorn" style="width: 24px; color: var(--accent-text);"></i> Roadmap & Changelog</a></li>
+        <li><a href="/about.html"><i class="fa-solid fa-circle-info" style="width: 24px; color: var(--accent-pdf);"></i> About PixelCraft</a></li>
+        <li><a href="/contact.html"><i class="fa-solid fa-envelope" style="width: 24px; color: var(--accent-invitation);"></i> Support Desk</a></li>
+      </ul>
+      <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+        <div class="auth-guest-only" style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <a href="/login.html" class="btn btn-secondary" style="width: 100%;">Log in</a>
+          <a href="/signup.html" class="btn btn-primary btn-shine" style="width: 100%;">Create Free Account</a>
+        </div>
+        <div class="auth-user-only" style="display: none; flex-direction: column; gap: 0.75rem;">
+          <a href="/workspace.html" class="btn btn-primary" style="width: 100%;">Go to Workspace</a>
+          <button class="btn btn-ghost btn-logout" style="width: 100%; color: #EF4444;">Log Out</button>
+        </div>
+      </div>
+        <div class="auth-user-only" style="display: none; flex-direction: column; gap: 0.75rem;">
+          <a href="/workspace.html" class="btn btn-primary" style="width: 100%;">Go to Workspace</a>
+          <button class="btn btn-ghost btn-logout" style="width: 100%; color: #EF4444;">Log Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-glow-orb orb-purple"></div>
+    <div class="hero-glow-orb orb-blue"></div>
+    <div class="container">
+      <div class="hero-badge-wrap hero-animate-badge">
+        <i class="fa-solid fa-bolt" style="color: #F59E0B;"></i>
+        <span>30 Production Creative & Developer Utilities In One Platform</span>
+      </div>
+      <h1 class="hero-title hero-animate-title">
+        Create. Convert. Design. <span class="text-gradient">Simplify.</span>
+      </h1>
+      <p class="hero-subtitle hero-animate-subtitle">
+        PixelCraft is the all-in-one online productivity platform for creators, freelancers, and developers. Compress images, merge PDFs, build invoices, design social graphics, and generate QR codes — effortlessly in your browser.
+      </p>
+      <div class="hero-actions hero-animate-actions">
+        <a href="/tools.html" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-rocket"></i> Explore All 30 Tools
+        </a>
+        <a href="/signup.html" class="btn btn-secondary btn-lg">
+          <i class="fa-solid fa-user-plus"></i> Start Free Workspace
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 STUDIOS OVERVIEW -->
+  <section class="section" style="background-color: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <h2>Engineered for Every Digital Workflow</h2>
+        <p class="section-subtitle">Eight dedicated studios designed with category-specific accents, intuitive controls, and client-first privacy.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        <!-- Image Studio -->
+        <a href="/category.html?cat=image" class="card card-interactive reveal-on-scroll reveal-delay-1" data-category="image">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.12); color: var(--accent-image); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+              <i class="fa-solid fa-image"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0;">Image Studio</h4>
+              <span class="badge cat-image">5 Tools</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem;">Compress, resize, crop, convert formats between PNG/JPG/WEBP, and sample colors with interactive loupe.</p>
+        </a>
+
+        <!-- PDF Studio -->
+        <a href="/category.html?cat=pdf" class="card card-interactive reveal-on-scroll reveal-delay-2" data-category="pdf">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(53, 185, 255, 0.12); color: var(--accent-pdf); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0;">PDF Studio</h4>
+              <span class="badge cat-pdf">5 Tools</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem;">Merge multiple PDFs, extract page ranges, compress document streams, and convert between PDF and images.</p>
+        </a>
+
+        <!-- Creator Studio -->
+        <a href="/category.html?cat=creator" class="card card-interactive reveal-on-scroll reveal-delay-3" data-category="creator">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(255, 101, 132, 0.12); color: var(--accent-creator); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0;">Creator Studio</h4>
+              <span class="badge cat-creator">4 Tools</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem;">Instagram posts (1080x1080), Stories (1080x1920), YouTube thumbnails (1280x720), and social caption generators.</p>
+        </a>
+
+        <!-- Business Studio -->
+        <a href="/category.html?cat=business" class="card card-interactive reveal-on-scroll reveal-delay-4" data-category="business">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(16, 185, 129, 0.12); color: var(--accent-business); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0;">Business Studio</h4>
+              <span class="badge cat-business">4 Tools</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem;">Invoices, quotations, GST calculations with CGST/SGST/IGST breakdown, and professional business cards.</p>
+        </a>
+
+        <!-- QR Studio -->
+        <a href="/category.html?cat=qr" class="card card-interactive reveal-on-scroll reveal-delay-1" data-category="qr">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(20, 184, 166, 0.12); color: var(--accent-qr); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+              <i class="fa-solid fa-qrcode"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0;">QR Studio</h4>
+              <span class="badge cat-qr">4 Tools</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem;">High-contrast QR generators for URLs, direct WhatsApp chats, Wi-Fi network credentials, and UPI payments.</p>
+        </a>
+
+        <!-- Invitation Studio -->
+        <a href="/category.html?cat=invitation" class="card card-interactive reveal-on-scroll reveal-delay-2" data-category="invitation">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(244, 63, 94, 0.12); color: var(--accent-invitation); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+              <i class="fa-solid fa-envelope-open-text"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0;">Invitation Studio</h4>
+              <span class="badge cat-invitation">3 Tools</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem;">Digital invitation cards for weddings, birthdays, and Islamic occasions (Nikah/Walima) with Arabic & RTL layout.</p>
+        </a>
+
+        <!-- Text Studio -->
+        <a href="/category.html?cat=text" class="card card-interactive reveal-on-scroll reveal-delay-3" data-category="text">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(245, 158, 11, 0.12); color: var(--accent-text); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+              <i class="fa-solid fa-font"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0;">Text Studio</h4>
+              <span class="badge cat-text">3 Tools</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem;">Word & character metrics, reading time estimations, multi-format case conversions, and custom Lorem Ipsum generator.</p>
+        </a>
+
+        <!-- Developer Studio -->
+        <a href="/category.html?cat=developer" class="card card-interactive reveal-on-scroll reveal-delay-4" data-category="developer">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(6, 182, 212, 0.12); color: var(--accent-developer); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0;">Developer Studio</h4>
+              <span class="badge cat-developer">2 Tools</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem;">JSON syntax validator, prettifier, minifier, and bidirectional plain text & file Base64 encoders.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED TOOLS GRID -->
+  <section class="section">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2>Featured Creative Tools</h2>
+          <p class="section-subtitle" style="margin-top: 0.25rem;">Start right now as a guest without friction, or save projects to your cloud workspace.</p>
+        </div>
+        <a href="/tools.html" class="btn btn-secondary">View All 30 Tools <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;" id="home-featured-tools">
+        <!-- Rendered dynamically from window.PIXELCRAFT_TOOLS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SAAS HIGHLIGHTS & TRUST -->
+  <section class="section" style="background-color: var(--bg-secondary);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <div class="card reveal-on-scroll reveal-delay-1" style="padding: 2rem;">
+          <i class="fa-solid fa-shield-halved" style="font-size: 2.2rem; color: #10B981; margin-bottom: 1rem;"></i>
+          <h4>Client-First Privacy</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem;">Files are processed locally in your browser memory wherever possible. We never sell, track, or unnecessarily store your sensitive documents.</p>
+        </div>
+        <div class="card reveal-on-scroll reveal-delay-2" style="padding: 2rem;">
+          <i class="fa-solid fa-gauge-high" style="font-size: 2.2rem; color: var(--brand-blue); margin-bottom: 1rem;"></i>
+          <h4>Ultra Fast & Modern</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem;">Zero clunky build bloat. Clean Vanilla JavaScript with HTML5 Canvas API and native CSS optimizations for instantaneous rendering.</p>
+        </div>
+        <div class="card reveal-on-scroll reveal-delay-3" style="padding: 2rem;">
+          <i class="fa-solid fa-cloud" style="font-size: 2.2rem; color: var(--brand-purple); margin-bottom: 1rem;"></i>
+          <h4>Persistent Cloud Workspace</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem;">Sign in to save your custom designs, download previous invoices, duplicate templates, and bookmark your favorite daily utilities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <!-- High-End Pre-Footer CTA Banner Card -->
+      <div class="card card-shimmer reveal-on-scroll" style="padding: 2.5rem 3rem; margin-bottom: 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%); border-color: var(--border-strong);">
+        <div style="max-width: 580px;">
+          <span class="badge badge-pro" style="margin-bottom: 0.75rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> START CREATING NOW</span>
+          <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Ready to streamline your creative workflows?</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">Access 30 studio tools, customizable templates, and automated workflows right inside your browser. No complex installations or credit cards required.</p>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+          <a href="/signup.html" class="btn btn-primary btn-shine" style="padding: 0.85rem 1.75rem; font-size: 1rem;">
+            <span>Get Started Free</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="/tools.html" class="btn btn-secondary" style="padding: 0.85rem 1.5rem; font-size: 1rem;">
+            <span>Explore All 30 Tools</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Footer Grid -->
+      <div class="footer-grid" style="grid-template-columns: 2.2fr repeat(3, 1fr); gap: 3rem; margin-bottom: 3.5rem;">
+        
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <img src="/assets/logos/logo.svg" alt="PixelCraft" style="height: 38px;">
+          </div>
+          <p style="font-size: 0.925rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1.5rem;">
+            The modern all-in-one creative productivity suite for creators, businesses, and digital builders. Create, convert, design, and simplify in one unified workspace.
+          </p>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.85rem; border-radius: var(--radius-full); background: var(--bg-surface); border: 1px solid var(--border-subtle); font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+            <span class="pulse-dot"></span>
+            <span>All 30 Studio Services Operational</span>
+          </div>
+          <div style="display: flex; gap: 0.6rem;">
+            <a href="https://github.com" target="_blank" class="btn-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://x.com" target="_blank" class="btn-icon" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="btn-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://discord.com" target="_blank" class="btn-icon" title="Discord Community"><i class="fa-brands fa-discord"></i></a>
+          </div>
+        </div>
+
+        <!-- Studio Suites -->
+        <div>
+          <h4 class="footer-heading">Studio Suites</h4>
+          <ul class="footer-links">
+            <li><a href="/category.html?cat=image"><i class="fa-solid fa-image" style="width: 18px; color: var(--accent-image);"></i> Image Studio</a></li>
+            <li><a href="/category.html?cat=pdf"><i class="fa-solid fa-file-pdf" style="width: 18px; color: var(--accent-pdf);"></i> PDF Studio</a></li>
+            <li><a href="/category.html?cat=creator"><i class="fa-solid fa-wand-magic-sparkles" style="width: 18px; color: var(--accent-creator);"></i> Creator Studio</a></li>
+            <li><a href="/category.html?cat=business"><i class="fa-solid fa-briefcase" style="width: 18px; color: var(--accent-business);"></i> Business Studio</a></li>
+            <li><a href="/category.html?cat=qr"><i class="fa-solid fa-qrcode" style="width: 18px; color: var(--accent-qr);"></i> QR Studio</a></li>
+            <li><a href="/category.html?cat=developer"><i class="fa-solid fa-code" style="width: 18px; color: var(--accent-developer);"></i> Developer Utilities</a></li>
+          </ul>
+        </div>
+
+        <!-- Platform & Workflows -->
+        <div>
+          <h4 class="footer-heading">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="/templates.html">Template Marketplace</a></li>
+            <li><a href="/workspace.html">Creative Workspace</a></li>
+            <li><a href="/pricing.html">Freemium Plans</a></li>
+            <li><a href="/community.html">Product Roadmap</a></li>
+            <li><a href="/referral.html">Referral Program</a></li>
+            <li><a href="/help.html">Help & Documentation</a></li>
+          </ul>
+        </div>
+
+        <!-- Trust & Company -->
+        <div>
+          <h4 class="footer-heading">Company & Legal</h4>
+          <ul class="footer-links">
+            <li><a href="/about.html">About PixelCraft</a></li>
+            <li><a href="/contact.html">Contact & Support</a></li>
+            <li><a href="/privacy.html">Privacy Guarantee</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/404.html">System Status</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span>&copy; 2026 PixelCraft Technologies Inc. All rights reserved.</span>
+        </div>
+        <div style="display: flex; gap: 1.5rem; align-items: center; font-size: 0.85rem;">
+          <span><i class="fa-solid fa-lock" style="color: #10B981; margin-right: 4px;"></i> 256-bit SSL Encrypted</span>
+          <span><i class="fa-solid fa-shield" style="color: var(--brand-purple); margin-right: 4px;"></i> Client-Side Privacy</span>
+          <span><i class="fa-solid fa-globe" style="color: var(--brand-blue); margin-right: 4px;"></i> Global Edge Network</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/notifications.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/pwa.js"></script>
+  <script src="/assets/js/tools-engine.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.PixelCraftI18n) {
+        PixelCraftI18n.renderLanguageSelector('i18n-lang-selector-container');
+      }
+      const featuredContainer = document.getElementById('home-featured-tools');
+      if (featuredContainer && window.PIXELCRAFT_TOOLS) {
+        // Display 6 popular tools on homepage
+        const popularIds = ['image-compressor', 'pdf-merger', 'instagram-post-maker', 'invoice-generator', 'url-qr-generator', 'json-formatter'];
+        const tools = window.PIXELCRAFT_TOOLS.filter(t => popularIds.includes(t.id));
+
+        featuredContainer.innerHTML = tools.map((t, i) => `
+          <div class="card card-interactive reveal-on-scroll reveal-delay-${(i % 4) + 1}" data-category="${t.category}" onclick="window.location.href='/tool.html?id=${t.id}'">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.1); color: ${t.accentColor}; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                <i class="fa-solid ${t.icon}"></i>
+              </div>
+              <span class="badge cat-${t.category}">${t.categoryName}</span>
+            </div>
+            <h4 style="margin-bottom: 0.4rem;">${t.name}</h4>
+            <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.25rem;">${t.description}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
+              <span class="badge badge-free">FREE</span>
+            </div>
+          </div>
+        `).join('');
+        if (window.PixelCraftUX && PixelCraftUX.initScrollReveal) {
+          PixelCraftUX.initScrollReveal();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+

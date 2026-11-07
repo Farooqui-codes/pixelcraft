@@ -1,0 +1,231 @@
+/* ====================================================================
+   PIXELCRAFT TOOL STUDIO SPECIFIC STYLES
+   ==================================================================== */
+
+.tool-runner-wrap {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.75rem;
+  min-height: 600px;
+}
+
+@media (max-width: 992px) {
+  .tool-runner-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tool-sidebar-controls {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.tool-workspace-stage {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+/* DROPZONE */
+.file-dropzone {
+  width: 100%;
+  border: 2px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+  transition: all var(--transition-fast);
+}
+
+.file-dropzone:hover, .file-dropzone.dragover {
+  border-color: var(--brand-purple);
+  background-color: rgba(121, 87, 255, 0.05);
+}
+
+.dropzone-icon {
+  font-size: 2.5rem;
+  color: var(--brand-purple);
+  margin-bottom: 0.75rem;
+}
+
+/* CANVAS STAGE */
+.canvas-container {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  background-color: #FFFFFF;
+  border-radius: var(--radius-sm);
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas-container canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* COMPARISON SLIDER / SPLIT PREVIEW */
+.comparison-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+.preview-pane {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: center;
+}
+
+.preview-pane img {
+  max-height: 280px;
+  margin: 0 auto 0.75rem;
+  object-fit: contain;
+  border-radius: var(--radius-xs);
+}
+
+/* COLOR EYE DROPPER LOUPE */
+.color-swatch-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.color-box-preview {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  border: 2px solid #FFFFFF;
+  box-shadow: var(--shadow-sm);
+}
+
+.color-code-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.6rem;
+  background-color: var(--bg-input);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+/* QR CODE PREVIEW */
+.qr-preview-box {
+  padding: 1.5rem;
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1rem;
+}
+
+/* INVOICE / QUOTATION PREVIEW PAPER */
+.invoice-paper {
+  width: 100%;
+  max-width: 760px;
+  background-color: #FFFFFF;
+  color: #1E293B;
+  padding: 2.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+}
+
+.invoice-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #F1F5F9;
+  padding-bottom: 1.5rem;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.invoice-table th {
+  background-color: #F8FAFC;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 2px solid #E2E8F0;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.invoice-table td {
+  padding: 0.75rem 0.85rem;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+/* CODE / JSON TEXTAREAS */
+.code-editor-box {
+  width: 100%;
+  height: 380px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  padding: 1rem;
+  outline: none;
+  resize: vertical;
+  white-space: pre;
+}
+
+/* STATS COUNTER TILES */
+.stats-counter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.85rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.stat-counter-tile {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  text-align: center;
+}
+
+.stat-counter-val {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--brand-blue);
+}
+
+.stat-counter-lbl {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+

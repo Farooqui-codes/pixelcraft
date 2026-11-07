@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Workspace — PixelCraft</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container-fluid">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="user-name-display" style="font-weight: 600; font-size: 0.95rem;">Creator</span>
+            <span class="badge user-plan-badge">FREE</span>
+            <button class="btn btn-ghost btn-sm btn-logout" style="color: #EF4444;" title="Log out"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- APP LAYOUT WITH PERSISTENT SIDEBAR -->
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-text" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px;">Workspace Menu</span>
+        <button class="btn-icon" id="sidebar-collapse-btn" title="Toggle Sidebar"><i class="fa-solid fa-bars"></i></button>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li><a href="/workspace.html" class="sidebar-link active"><i class="fa-solid fa-house-laptop"></i> <span class="sidebar-text">Overview</span></a></li>
+        <li><a href="/projects.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> <span class="sidebar-text">My Projects</span></a></li>
+        <li><a href="/favorites.html" class="sidebar-link"><i class="fa-solid fa-star"></i> <span class="sidebar-text">Favorites</span></a></li>
+        <li><a href="/activity.html" class="sidebar-link"><i class="fa-solid fa-clock-rotate-left"></i> <span class="sidebar-text">Recent Activity</span></a></li>
+        <li><a href="/tools.html" class="sidebar-link"><i class="fa-solid fa-toolbox"></i> <span class="sidebar-text">All 30 Tools</span></a></li>
+        <li><a href="/profile.html" class="sidebar-link"><i class="fa-solid fa-user-gear"></i> <span class="sidebar-text">User Profile</span></a></li>
+        <li><a href="/settings.html" class="sidebar-link"><i class="fa-solid fa-sliders"></i> <span class="sidebar-text">Settings</span></a></li>
+        <li><a href="/pricing.html" class="sidebar-link"><i class="fa-solid fa-tags"></i> <span class="sidebar-text">Upgrade Plan</span></a></li>
+        <li class="auth-admin-only" style="display: none;"><a href="/admin.html" class="sidebar-link" style="color: #F59E0B;"><i class="fa-solid fa-shield-halved"></i> <span class="sidebar-text">Admin Panel</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="/help.html" class="sidebar-link" style="padding: 0.5rem;"><i class="fa-solid fa-circle-question"></i> <span class="sidebar-text">Help & FAQs</span></a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <!-- WELCOME HERO -->
+      <div class="card" style="padding: 2rem; background: var(--brand-gradient); color: #FFFFFF; border: none; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 style="color: #FFFFFF; margin-bottom: 0.4rem;">Welcome back, <span class="user-name-display">Creator</span>! 👋</h2>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; max-width: 600px;">Access your recent projects, launch creative utilities, and manage your cloud productivity.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm" onclick="PixelCraftWorkspace.openBrandKitModal()" style="background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.4); color: #FFFFFF;">
+              <i class="fa-solid fa-palette"></i> Brand Kit Studio
+            </button>
+            <a href="/pricing.html" class="btn btn-secondary btn-sm" style="background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.4); color: #FFFFFF;">
+              <i class="fa-solid fa-crown"></i> Manage Subscription
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKSPACE USAGE STATS -->
+      <div id="workspace-stats" style="margin-bottom: 2rem;"></div>
+
+      <!-- RECENT TOOLS SECTION -->
+      <div style="margin-bottom: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-size: 1.25rem;">Recently Used Tools</h3>
+          <a href="/activity.html" style="font-size: 0.85rem; color: var(--brand-blue); font-weight: 600;">View Activity Log</a>
+        </div>
+        <div id="recent-tools-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem;"></div>
+      </div>
+
+      <!-- FAVORITE TOOLS SECTION -->
+      <div style="margin-bottom: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-size: 1.25rem;">Favorite Bookmarks</h3>
+          <a href="/favorites.html" style="font-size: 0.85rem; color: var(--brand-blue); font-weight: 600;">Manage Favorites</a>
+        </div>
+        <div id="favorite-tools-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem;"></div>
+      </div>
+
+      <!-- RECENT PROJECTS SECTION -->
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-size: 1.25rem;">My Projects</h3>
+          <a href="/projects.html" style="font-size: 0.85rem; color: var(--brand-blue); font-weight: 600;">All Projects</a>
+        </div>
+        <div id="projects-list-container"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/notifications.js"></script>
+  <script src="/assets/js/brandkit.js"></script>
+  <script src="/assets/js/pwa.js"></script>
+  <script src="/assets/js/tools-engine.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/workspace.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      PixelCraftWorkspace.init();
+    });
+  </script>
+</body>
+</html>
+

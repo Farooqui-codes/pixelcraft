@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — PixelCraft Control Center</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container-fluid">
+      <nav class="navbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <a href="/index.html" class="brand-link">
+            <img src="/assets/logos/logo.svg" alt="PixelCraft" class="brand-logo-img">
+          </a>
+          <span class="badge badge-pro"><i class="fa-solid fa-shield-halved"></i> ADMIN CONSOLE</span>
+        </div>
+        <div class="nav-actions">
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <a href="/workspace.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-house-laptop"></i> User Workspace</a>
+          <button class="btn btn-ghost btn-sm btn-logout" style="color: #EF4444;"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <!-- PERSISTENT ADMIN SIDEBAR -->
+    <aside class="sidebar">
+      <ul class="sidebar-nav">
+        <li><a href="#admin-overview" class="sidebar-link active admin-tab-btn" data-target="admin-overview"><i class="fa-solid fa-chart-line"></i> <span class="sidebar-text">Overview & Stats</span></a></li>
+        <li><a href="#admin-users" class="sidebar-link admin-tab-btn" data-target="admin-users"><i class="fa-solid fa-users"></i> <span class="sidebar-text">User Accounts</span></a></li>
+        <li><a href="#admin-monetization" class="sidebar-link admin-tab-btn" data-target="admin-monetization"><i class="fa-solid fa-tags"></i> <span class="sidebar-text">Plans & Pricing</span></a></li>
+        <li><a href="#admin-subscriptions" class="sidebar-link admin-tab-btn" data-target="admin-subscriptions"><i class="fa-solid fa-crown"></i> <span class="sidebar-text">Subscriptions</span></a></li>
+        <li><a href="#admin-transactions" class="sidebar-link admin-tab-btn" data-target="admin-transactions"><i class="fa-solid fa-receipt"></i> <span class="sidebar-text">Payment Records</span></a></li>
+        <li><a href="#admin-coupons" class="sidebar-link admin-tab-btn" data-target="admin-coupons"><i class="fa-solid fa-percent"></i> <span class="sidebar-text">Coupons & Promos</span></a></li>
+        <li><a href="#admin-templates" class="sidebar-link admin-tab-btn" data-target="admin-templates"><i class="fa-solid fa-shapes"></i> <span class="sidebar-text">Templates</span></a></li>
+        <li><a href="#admin-community" class="sidebar-link admin-tab-btn" data-target="admin-community"><i class="fa-solid fa-comments"></i> <span class="sidebar-text">Community Feedback</span></a></li>
+        <li><a href="#admin-notifications" class="sidebar-link admin-tab-btn" data-target="admin-notifications"><i class="fa-solid fa-bullhorn"></i> <span class="sidebar-text">Broadcast Alerts</span></a></li>
+        <li><a href="#admin-support" class="sidebar-link admin-tab-btn" data-target="admin-support"><i class="fa-solid fa-headset"></i> <span class="sidebar-text">Support Tickets</span></a></li>
+        <li><a href="#admin-settings" class="sidebar-link admin-tab-btn" data-target="admin-settings"><i class="fa-solid fa-sliders"></i> <span class="sidebar-text">Platform Settings</span></a></li>
+        <li><a href="/workspace.html" class="sidebar-link"><i class="fa-solid fa-arrow-left"></i> <span class="sidebar-text">Exit to App</span></a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <!-- 1. OVERVIEW SECTION -->
+      <section id="admin-overview" class="admin-tab-pane">
+        <div style="margin-bottom: 2rem;">
+          <h2>Platform Overview & Metrics</h2>
+          <p class="section-subtitle" style="margin-top: 0.25rem;">Live system analytics, registered users, and tool executions.</p>
+        </div>
+
+        <div class="stats-counter-grid" style="margin-bottom: 2.5rem;">
+          <div class="stat-counter-tile">
+            <div class="stat-counter-val" id="stat-total-users">-</div>
+            <div class="stat-counter-lbl">Registered Users</div>
+          </div>
+          <div class="stat-counter-tile">
+            <div class="stat-counter-val" id="stat-total-projects" style="color: #7957FF;">-</div>
+            <div class="stat-counter-lbl">Cloud Projects</div>
+          </div>
+          <div class="stat-counter-tile">
+            <div class="stat-counter-val" id="stat-tool-runs" style="color: #10B981;">-</div>
+            <div class="stat-counter-lbl">Tool Executions</div>
+          </div>
+          <div class="stat-counter-tile">
+            <div class="stat-counter-val" id="stat-revenue" style="color: #F59E0B;">₹0</div>
+            <div class="stat-counter-lbl">Estimated Revenue</div>
+          </div>
+          <div class="stat-counter-tile">
+            <div class="stat-counter-val" id="stat-open-tickets" style="color: #FF6584;">-</div>
+            <div class="stat-counter-lbl">Open Support Tickets</div>
+          </div>
+        </div>
+
+        <!-- POPULAR TOOLS -->
+        <div class="card" style="padding: 1.5rem; max-width: 600px;">
+          <h4 style="margin-bottom: 1rem;"><i class="fa-solid fa-fire" style="color: #F59E0B;"></i> Most Executed Tools</h4>
+          <div id="admin-popular-tools">Loading analytics...</div>
+        </div>
+      </section>
+
+      <!-- 2. USERS MANAGEMENT -->
+      <section id="admin-users" class="admin-tab-pane" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2>User Account Management</h2>
+            <p class="section-subtitle" style="margin-top: 0.25rem;">Manage user roles, upgrade subscriptions, and review registrations.</p>
+          </div>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="card" style="padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 240px; position: relative;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+            <input type="text" id="admin-user-search" class="form-control" placeholder="Search by name or email..." style="padding-left: 2.6rem;">
+          </div>
+          <select class="form-control" id="admin-user-plan" style="width: 180px;">
+            <option value="all">All Plans</option>
+            <option value="free">Free</option>
+            <option value="pro">Pro</option>
+            <option value="business">Business</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>User / Email</th>
+                <th>Current Plan</th>
+                <th>Role</th>
+                <th>Joined</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. PLANS & PRICING CONFIGURATION -->
+      <section id="admin-monetization" class="admin-tab-pane" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2>Subscription Plans & Pricing Engine</h2>
+            <p class="section-subtitle" style="margin-top: 0.25rem;">Configure live monthly pricing, daily tool quotas, project limits, and feature permissions.</p>
+          </div>
+          <button class="btn btn-primary" id="btn-save-plans" onclick="PixelCraftAdmin.savePlans()">
+            <i class="fa-solid fa-floppy-disk"></i> Save Pricing Changes
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+          <!-- FREE PLAN CONFIG -->
+          <div class="card" style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.2rem;"><span class="badge badge-free">Free Plan</span></h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Guest & Standard Users</span>
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Price (₹/month)</label>
+              <input type="number" id="plan-free-price" class="form-control" value="0" disabled style="opacity: 0.7;">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Daily Operations Quota</label>
+              <input type="number" id="plan-free-dailyOps" class="form-control" value="10" min="1">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Max Saved Projects</label>
+              <input type="number" id="plan-free-maxProjects" class="form-control" value="5" min="1">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Storage Capacity (MB)</label>
+              <input type="number" id="plan-free-maxStorageMB" class="form-control" value="25" min="5">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Max File Size (MB)</label>
+              <input type="number" id="plan-free-maxFileSizeMB" class="form-control" value="10" min="1">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Batch Processing Count</label>
+              <input type="number" id="plan-free-batchLimit" class="form-control" value="1" min="1">
+            </div>
+          </div>
+
+          <!-- PRO PLAN CONFIG -->
+          <div class="card" style="padding: 1.5rem; border: 2px solid var(--accent-purple);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.2rem;"><span class="badge badge-pro">Pro Plan</span></h3>
+              <span class="badge badge-pro">Most Popular</span>
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Price (₹/month)</label>
+              <input type="number" id="plan-pro-price" class="form-control" value="149" min="1">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Daily Operations Quota</label>
+              <input type="number" id="plan-pro-dailyOps" class="form-control" value="100" min="10">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Max Saved Projects</label>
+              <input type="number" id="plan-pro-maxProjects" class="form-control" value="50" min="10">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Storage Capacity (MB)</label>
+              <input type="number" id="plan-pro-maxStorageMB" class="form-control" value="500" min="50">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Max File Size (MB)</label>
+              <input type="number" id="plan-pro-maxFileSizeMB" class="form-control" value="50" min="10">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Batch Processing Count</label>
+              <input type="number" id="plan-pro-batchLimit" class="form-control" value="10" min="2">
+            </div>
+          </div>
+
+          <!-- BUSINESS PLAN CONFIG -->
+          <div class="card" style="padding: 1.5rem; border: 2px solid var(--accent-teal);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.2rem;"><span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.3);">Business Plan</span></h3>
+              <span style="font-size: 0.85rem; color: #10B981;"><i class="fa-solid fa-briefcase"></i> Teams</span>
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Price (₹/month)</label>
+              <input type="number" id="plan-business-price" class="form-control" value="399" min="1">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Daily Operations Quota</label>
+              <input type="number" id="plan-business-dailyOps" class="form-control" value="1000" min="50">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Max Saved Projects</label>
+              <input type="number" id="plan-business-maxProjects" class="form-control" value="500" min="50">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Storage Capacity (MB)</label>
+              <input type="number" id="plan-business-maxStorageMB" class="form-control" value="5120" min="500">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Max File Size (MB)</label>
+              <input type="number" id="plan-business-maxFileSizeMB" class="form-control" value="100" min="20">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Batch Processing Count</label>
+              <input type="number" id="plan-business-batchLimit" class="form-control" value="50" min="5">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. CUSTOMER SUBSCRIPTIONS -->
+      <section id="admin-subscriptions" class="admin-tab-pane" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2>Customer Subscriptions Management</h2>
+            <p class="section-subtitle" style="margin-top: 0.25rem;">Monitor customer plan subscriptions, renew active accounts, and modify access privileges.</p>
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="card" style="padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 240px; position: relative;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+            <input type="text" id="admin-sub-search" class="form-control" placeholder="Search by customer email..." style="padding-left: 2.6rem;">
+          </div>
+          <select class="form-control" id="admin-sub-plan" style="width: 160px;">
+            <option value="all">All Plans</option>
+            <option value="free">Free</option>
+            <option value="pro">Pro</option>
+            <option value="business">Business</option>
+          </select>
+          <select class="form-control" id="admin-sub-status" style="width: 160px;">
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="canceled">Canceled</option>
+            <option value="expired">Expired</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Plan Tier</th>
+                <th>Status</th>
+                <th>Renewal / Expiry</th>
+                <th>Auto-Renew</th>
+                <th>Manage Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-subs-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 5. PAYMENT TRANSACTIONS / AUDIT -->
+      <section id="admin-transactions" class="admin-tab-pane" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2>Payment Ledger & Gateway Transactions</h2>
+            <p class="section-subtitle" style="margin-top: 0.25rem;">Real-time verified payments, tax (GST) calculations, promo discounts, and gateway order IDs.</p>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 240px; position: relative;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+            <input type="text" id="admin-tx-search" class="form-control" placeholder="Search by Invoice #, Order ID, or Email..." style="padding-left: 2.6rem;">
+          </div>
+          <select class="form-control" id="admin-tx-status" style="width: 180px;">
+            <option value="all">All Statuses</option>
+            <option value="captured">Captured (Paid)</option>
+            <option value="failed">Failed</option>
+            <option value="refunded">Refunded</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Customer</th>
+                <th>Plan</th>
+                <th>Amount</th>
+                <th>Tax (GST 18%)</th>
+                <th>Discount</th>
+                <th>Gateway Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="admin-tx-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 6. COUPONS & PROMOTIONAL DISCOUNTS -->
+      <section id="admin-coupons" class="admin-tab-pane" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2>Coupons & Promotional Discounts</h2>
+            <p class="section-subtitle" style="margin-top: 0.25rem;">Create, track, and expire discount promo codes applied during checkout.</p>
+          </div>
+        </div>
+
+        <!-- Create Coupon Card -->
+        <div class="card" style="padding: 1.5rem; margin-bottom: 2rem;">
+          <h4 style="margin-bottom: 1rem;"><i class="fa-solid fa-plus-circle" style="color: var(--accent-purple);"></i> Create or Update Promo Code</h4>
+          <form id="admin-coupon-form" onsubmit="PixelCraftAdmin.saveCoupon(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: flex-end;">
+            <div class="form-group">
+              <label class="form-label">Coupon Code</label>
+              <input type="text" id="coupon-code" class="form-control" placeholder="e.g. SUMMER50" required style="text-transform: uppercase;">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Discount (%)</label>
+              <input type="number" id="coupon-discount" class="form-control" min="1" max="100" value="20" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Valid Until</label>
+              <input type="date" id="coupon-expiry" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Max Uses</label>
+              <input type="number" id="coupon-max-uses" class="form-control" min="1" value="500">
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label class="form-label">Description / Campaign</label>
+              <input type="text" id="coupon-desc" class="form-control" placeholder="e.g. 50% discount for launch week supporters">
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Save Coupon</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Coupons Table -->
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Discount</th>
+                <th>Valid Until</th>
+                <th>Redemptions / Max</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-coupons-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TEMPLATES MANAGEMENT -->
+      <section id="admin-templates" class="admin-tab-pane" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2>Template Marketplace Manager</h2>
+            <p class="section-subtitle" style="margin-top: 0.25rem;">Create, configure, publish, and audit professional creative templates.</p>
+          </div>
+          <button class="btn btn-primary" onclick="PixelCraftAdmin.toggleCreateTemplateForm()"><i class="fa-solid fa-plus"></i> Add New Template</button>
+        </div>
+
+        <!-- Create Template Card -->
+        <div id="card-create-template" class="card" style="display: none; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid var(--primary-color);">
+          <h4 style="margin-bottom: 1rem;"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--primary-color);"></i> Publish Creative Template</h4>
+          <form id="form-create-template" onsubmit="event.preventDefault(); PixelCraftAdmin.saveTemplate();" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Template Title</label>
+              <input type="text" id="tpl-title" class="form-control" placeholder="e.g. Minimalist Tech Invoice" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Target Tool</label>
+              <select id="tpl-tool" class="form-control" required>
+                <option value="invoice-generator">Invoice Generator</option>
+                <option value="quotation-generator">Quotation Generator</option>
+                <option value="business-card-maker">Business Card Maker</option>
+                <option value="social-creator">Social Media Post Creator</option>
+                <option value="invitation-maker">Event & Party Invitation Maker</option>
+                <option value="resume-builder">Resume / CV Builder</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select id="tpl-category" class="form-control" required>
+                <option value="business">Business</option>
+                <option value="social">Social Media</option>
+                <option value="invitations">Invitations</option>
+                <option value="documents">Documents</option>
+                <option value="marketing">Marketing</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Format / Aspect Ratio</label>
+              <select id="tpl-format" class="form-control" required>
+                <option value="a4">A4 Document</option>
+                <option value="square">1:1 Square</option>
+                <option value="portrait">9:16 Portrait / Story</option>
+                <option value="landscape">16:9 Landscape / Post</option>
+                <option value="card">Standard Card (3.5x2)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Access Tier</label>
+              <select id="tpl-tier" class="form-control" required>
+                <option value="free">Free Access</option>
+                <option value="pro">Pro Plan Only</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Thumbnail URL or Icon</label>
+              <input type="text" id="tpl-thumb" class="form-control" placeholder="e.g. /assets/templates/minimal-invoice.png">
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label class="form-label">Config JSON (Initial Tool State)</label>
+              <textarea id="tpl-config" class="form-control" rows="3" placeholder='{"theme": "modern", "primaryColor": "#101426", "fields": {}}'></textarea>
+            </div>
+            <div style="grid-column: 1 / -1; display: flex; gap: 0.75rem; justify-content: flex-end;">
+              <button type="button" class="btn btn-secondary" onclick="PixelCraftAdmin.toggleCreateTemplateForm(false)">Cancel</button>
+              <button type="submit" class="btn btn-primary">Publish to Marketplace</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="card" style="padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 220px; position: relative;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+            <input type="text" id="admin-tpl-search" class="form-control" placeholder="Search templates..." style="padding-left: 2.6rem;">
+          </div>
+          <select id="admin-tpl-category" class="form-control" style="width: 170px;">
+            <option value="all">All Categories</option>
+            <option value="social">Social Media</option>
+            <option value="business">Business</option>
+            <option value="invitations">Invitations</option>
+            <option value="documents">Documents</option>
+            <option value="marketing">Marketing</option>
+          </select>
+          <select id="admin-tpl-tier" class="form-control" style="width: 140px;">
+            <option value="all">All Tiers</option>
+            <option value="free">Free</option>
+            <option value="pro">Pro</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title / Target</th>
+                <th>Category</th>
+                <th>Format</th>
+                <th>Tier</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-templates-tbody">
+              <tr><td colspan="6" style="text-align: center; padding: 2rem;">Loading templates...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- COMMUNITY & FEATURE REQUEST MODERATION -->
+      <section id="admin-community" class="admin-tab-pane" style="display: none;">
+        <div style="margin-bottom: 1.5rem;">
+          <h2>Community Feedback & Feature Roadmap</h2>
+          <p class="section-subtitle" style="margin-top: 0.25rem;">Review user submissions, moderate community feature requests, and publish release changelogs.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1.2fr; gap: 1.5rem; align-items: start;">
+          <div>
+            <div class="card" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+              <h4 style="margin-bottom: 1rem;"><i class="fa-solid fa-list-check" style="color: var(--primary-color);"></i> Community Feature Requests</h4>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Title & Description</th>
+                      <th>Category</th>
+                      <th>Upvotes</th>
+                      <th>Status</th>
+                      <th>Moderate</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-feedback-tbody">
+                    <tr><td colspan="5" style="text-align: center; padding: 2rem;">Loading community requests...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publish Changelog Entry Form -->
+          <div class="card" style="padding: 1.5rem;">
+            <h4 style="margin-bottom: 0.75rem;"><i class="fa-solid fa-clock-rotate-left" style="color: #10B981;"></i> Publish Changelog Update</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Announce new features, improvements, and bug fixes on the public changelog.</p>
+            <form id="form-publish-changelog" onsubmit="event.preventDefault(); PixelCraftAdmin.publishChangelog();">
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label class="form-label">Version Number</label>
+                <input type="text" id="cl-version" class="form-control" placeholder="e.g. v2.4.0" required>
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label class="form-label">Release Title</label>
+                <input type="text" id="cl-title" class="form-control" placeholder="e.g. Brand Kit & Template Marketplace" required>
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label class="form-label">Added Features (1 per line)</label>
+                <textarea id="cl-added" class="form-control" rows="3" placeholder="Template Marketplace with instant preview&#10;Brand Kit auto-fill"></textarea>
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label class="form-label">Improvements (1 per line)</label>
+                <textarea id="cl-improved" class="form-control" rows="2" placeholder="Enhanced batch image compression performance&#10;Multi-language RTL alignment"></textarea>
+              </div>
+              <div class="form-group" style="margin-bottom: 1.25rem;">
+                <label class="form-label">Fixed Issues (1 per line)</label>
+                <textarea id="cl-fixed" class="form-control" rows="2" placeholder="Fixed duplicate project plan counter"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-cloud-arrow-up"></i> Publish to Changelog</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- IN-APP BROADCAST NOTIFICATIONS -->
+      <section id="admin-notifications" class="admin-tab-pane" style="display: none;">
+        <div style="margin-bottom: 1.5rem;">
+          <h2>In-App Notification Broadcast</h2>
+          <p class="section-subtitle" style="margin-top: 0.25rem;">Broadcast announcement alerts and system messages directly into user notification centers.</p>
+        </div>
+
+        <div class="card" style="max-width: 650px; padding: 2rem;">
+          <h4 style="margin-bottom: 1.25rem;"><i class="fa-solid fa-bullhorn" style="color: #7957FF;"></i> New Broadcast Announcement</h4>
+          <form id="form-broadcast-notif" onsubmit="event.preventDefault(); PixelCraftAdmin.sendBroadcastNotification();">
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label">Broadcast Title</label>
+              <input type="text" id="bc-title" class="form-control" placeholder="e.g. 🎨 15+ New Creative Templates Added!" required>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Notification Type</label>
+                <select id="bc-type" class="form-control" required>
+                  <option value="announcement">Announcement (Purple)</option>
+                  <option value="system">System (Blue)</option>
+                  <option value="promo">Promotion (Green)</option>
+                  <option value="tip">Productivity Tip (Amber)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Call to Action Link (Optional)</label>
+                <input type="text" id="bc-link" class="form-control" placeholder="/templates.html">
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label class="form-label">Broadcast Message</label>
+              <textarea id="bc-msg" class="form-control" rows="4" placeholder="Explore our brand new Template Marketplace with instant preview and 1-click customization!" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-paper-plane"></i> Broadcast to All Users</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 3. SUPPORT TICKETS -->
+      <section id="admin-support" class="admin-tab-pane" style="display: none;">
+        <div style="margin-bottom: 1.5rem;">
+          <h2>Support Messages & Inquiries</h2>
+          <p class="section-subtitle" style="margin-top: 0.25rem;">Review submissions sent through the Contact Us form.</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Sender</th>
+                <th>Subject</th>
+                <th>Message Excerpt</th>
+                <th>Status</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody id="admin-support-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. PLATFORM SETTINGS -->
+      <section id="admin-settings" class="admin-tab-pane" style="display: none;">
+        <div style="margin-bottom: 2rem;">
+          <h2>Global Platform Settings</h2>
+          <p class="section-subtitle" style="margin-top: 0.25rem;">Configure maintenance mode and platform pricing.</p>
+        </div>
+
+        <div class="card" style="padding: 2rem; max-width: 650px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle);">
+            <div>
+              <strong>Global Maintenance Mode</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">When enabled, non-admin users see a scheduled maintenance notice.</p>
+            </div>
+            <label style="position: relative; display: inline-block; width: 48px; height: 26px; cursor: pointer;">
+              <input type="checkbox" id="maint-toggle" style="opacity: 0; width: 0; height: 0;">
+              <span style="position: absolute; inset: 0; background-color: var(--border-subtle); border-radius: 999px; transition: 0.2s;" id="maint-slider"></span>
+            </label>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <strong>System Operational Status</strong>
+            <p style="font-size: 0.85rem; color: #10B981; margin-top: 0.25rem;"><i class="fa-solid fa-circle-check"></i> REST API & Database engine online.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/notifications.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/pwa.js"></script>
+  <script src="/assets/js/admin.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      PixelCraftAdmin.init();
+    });
+  </script>
+</body>
+</html>
+

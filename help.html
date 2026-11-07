@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Centre & FAQs — PixelCraft</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/tools.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> All Tools</a></li>
+          <li><a href="/pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div class="auth-guest-only" style="display: flex; gap: 0.5rem;">
+            <a href="/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="/signup.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="auth-user-only" style="display: none;">
+            <a href="/workspace.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-house-laptop"></i> Workspace</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="section" style="padding-top: 4.5rem; padding-bottom: 5rem;">
+    <div class="container" style="max-width: 860px;">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <span class="badge badge-free" style="margin-bottom: 0.75rem;"><i class="fa-solid fa-circle-question"></i> Knowledge Base</span>
+        <h1>Help Centre & Frequently Asked Questions</h1>
+        <p class="section-subtitle">Everything you need to know about using PixelCraft's creative tools, project workspaces, and billing.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <!-- FAQ 1 -->
+        <div class="card" style="padding: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem; color: var(--brand-purple);"><i class="fa-solid fa-shield-halved" style="margin-right: 8px;"></i> Are my uploaded files and images stored on your servers?</h4>
+          <p style="font-size: 0.95rem; line-height: 1.6;">No! By default, PixelCraft processes images, crops, QR codes, conversions, and text utilities entirely inside your browser's local sandbox memory using the HTML5 Canvas API and JavaScript. Your private files never leave your computer unless you explicitly choose to save a project to your authenticated cloud account.</p>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="card" style="padding: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem; color: var(--brand-blue);"><i class="fa-solid fa-bolt" style="margin-right: 8px;"></i> Do I need to create an account to use the tools?</h4>
+          <p style="font-size: 0.95rem; line-height: 1.6;">No, guest users can access all free standard tools without creating an account or logging in. Creating a free account allows you to save designs, store invoices, bookmark favorites, and access your cloud workspace across devices.</p>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="card" style="padding: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem; color: #10B981;"><i class="fa-solid fa-indian-rupee-sign" style="margin-right: 8px;"></i> How does the UPI QR Generator work?</h4>
+          <p style="font-size: 0.95rem; line-height: 1.6;">The UPI QR generator formats standard NPCI-compliant payment URI links (<code style="font-family: var(--font-mono); font-size: 0.85rem;">upi://pay?pa=...</code>) into high-contrast QR codes. When scanned with Google Pay, PhonePe, Paytm, or BHIM, it launches payment in the user's banking app. PixelCraft does not process or verify bank settlements.</p>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="card" style="padding: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem; color: #FF6584;"><i class="fa-solid fa-keyboard" style="margin-right: 8px;"></i> What keyboard shortcuts are supported?</h4>
+          <p style="font-size: 0.95rem; line-height: 1.6;">Press <kbd class="cmd-shortcut-badge">Ctrl + K</kbd> or <kbd class="cmd-shortcut-badge">Cmd + K</kbd> anywhere on the site to trigger the universal command palette and search tools or pages. Press <kbd class="cmd-shortcut-badge">Esc</kbd> to close any active modal dialog. Press <kbd class="cmd-shortcut-badge">?</kbd> to view full shortcut mappings.</p>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="card" style="padding: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem; color: #F59E0B;"><i class="fa-solid fa-arrows-rotate" style="margin-right: 8px;"></i> What happens if my Pro subscription expires?</h4>
+          <p style="font-size: 0.95rem; line-height: 1.6;">We never delete or lock you out of your existing data. If your subscription expires, your account simply reverts to the Free tier. You can still view, download, and export all your previously created projects.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 PixelCraft Technologies Inc. All rights reserved.</span>
+        <div>Create. Convert. Design. Simplify. • Help & Knowledgebase</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
+

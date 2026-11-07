@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('pixelcraft_theme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tool Runner — PixelCraft</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/tools.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> All Tools</a></li>
+          <li><a href="/category.html?cat=image" class="nav-link">Image</a></li>
+          <li><a href="/category.html?cat=pdf" class="nav-link">PDF</a></li>
+          <li><a href="/category.html?cat=creator" class="nav-link">Creator</a></li>
+          <li><a href="/category.html?cat=business" class="nav-link">Business</a></li>
+          <li><a href="/pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div class="auth-guest-only" style="display: flex; gap: 0.5rem;">
+            <a href="/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="/signup.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="auth-user-only" style="display: none;">
+            <a href="/workspace.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-house-laptop"></i> Workspace</a>
+          </div>
+          <button class="btn-icon mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- TOOL HEADER BAR -->
+  <div style="background-color: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle); padding: 1.5rem 0;">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div id="tool-header-icon" style="width: 48px; height: 48px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; background: var(--bg-surface);">
+            <i class="fa-solid fa-wrench"></i>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem;">
+              <h2 id="tool-header-title" style="font-size: 1.5rem; margin: 0;">Tool Runner</h2>
+              <span id="tool-header-cat" class="badge">Studio</span>
+            </div>
+            <p id="tool-header-desc" style="font-size: 0.85rem; margin: 0; color: var(--text-muted);">Launch tool interactive stage</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <button class="btn btn-secondary btn-sm" id="btn-toggle-tool-fav">
+            <i class="fa-regular fa-star" id="tool-fav-icon"></i> Favorite
+          </button>
+          <a href="/tools.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-arrow-left"></i> All Tools</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL INTERACTIVE MOUNT CONTAINER -->
+  <main class="section" style="padding-top: 2rem; padding-bottom: 4rem;">
+    <div class="container" id="tool-mount-point">
+      <!-- Tool interactive controls & canvas rendered here -->
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 PixelCraft Technologies Inc. All rights reserved.</span>
+        <div>Create. Convert. Design. Simplify. • High-Performance Studio Engine</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/notifications.js"></script>
+  <script src="/assets/js/brandkit.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/pwa.js"></script>
+  <script src="/assets/js/tools-engine.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      // Support path-based or query-based id
+      let toolId = urlParams.get('id');
+      if (!toolId) {
+        const parts = window.location.pathname.split('/');
+        toolId = parts[parts.length - 1] || 'image-compressor';
+      }
+
+      const tool = (window.PIXELCRAFT_TOOLS || []).find(t => t.id === toolId) || window.PIXELCRAFT_TOOLS[0];
+      
+      document.title = `${tool.name} — PixelCraft`;
+      document.getElementById('tool-header-title').textContent = tool.name;
+      document.getElementById('tool-header-desc').textContent = tool.description;
+      const catBadge = document.getElementById('tool-header-cat');
+      catBadge.textContent = tool.categoryName;
+      catBadge.className = `badge cat-${tool.category}`;
+
+      const iconBox = document.getElementById('tool-header-icon');
+      iconBox.style.color = tool.accentColor;
+      iconBox.innerHTML = `<i class="fa-solid ${tool.icon}"></i>`;
+
+      // Mount tool engine
+      const mountPoint = document.getElementById('tool-mount-point');
+      PixelCraftTools.renderTool(tool.id, mountPoint);
+
+      // Favorite toggle button
+      const favBtn = document.getElementById('btn-toggle-tool-fav');
+      const favIcon = document.getElementById('tool-fav-icon');
+
+      if (PixelCraftAuth.isLoggedIn()) {
+        try {
+          const res = await PixelCraftAPI.favorites.list();
+          if (res.favorites && res.favorites.includes(tool.id)) {
+            favIcon.className = 'fa-solid fa-star';
+            favIcon.style.color = '#F59E0B';
+          }
+        } catch (e) {}
+      }
+
+      favBtn.onclick = async () => {
+        if (!PixelCraftAuth.isLoggedIn()) {
+          PixelCraftUX.showToast('Please log in to add tools to your favorites.', 'info');
+          return;
+        }
+        const isFav = favIcon.classList.contains('fa-solid');
+        favIcon.className = isFav ? 'fa-regular fa-star' : 'fa-solid fa-star';
+        favIcon.style.color = isFav ? '' : '#F59E0B';
+        try {
+          const res = await PixelCraftAPI.favorites.toggle(tool.id);
+          PixelCraftUX.showToast(res.message, 'success');
+        } catch (e) {
+          favIcon.className = isFav ? 'fa-solid fa-star' : 'fa-regular fa-star';
+          favIcon.style.color = isFav ? '#F59E0B' : '';
+          PixelCraftUX.showToast(e.message, 'error');
+        }
+      };
+    });
+  </script>
+</body>
+</html>
+

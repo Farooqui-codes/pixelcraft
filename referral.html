@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Referral & Affiliate Program — PixelCraft</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/tools.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> All Tools</a></li>
+          <li><a href="/pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette"><i class="fa-solid fa-magnifying-glass"></i> <kbd class="cmd-shortcut-badge">Ctrl K</kbd></button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div class="auth-guest-only" style="display: flex; gap: 0.5rem;">
+            <a href="/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="/signup.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="auth-user-only" style="display: none;">
+            <a href="/workspace.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-house-laptop"></i> Workspace</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="section" style="padding-top: 4.5rem; padding-bottom: 5rem;">
+    <div class="container" style="max-width: 860px;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <span class="badge cat-creator" style="margin-bottom: 0.75rem;"><i class="fa-solid fa-gift"></i> Community Growth</span>
+        <h1>PixelCraft Referral Program</h1>
+        <p class="section-subtitle">Invite fellow creators, developers, and team members to join PixelCraft.</p>
+      </div>
+
+      <!-- NOTICE BANNER -->
+      <div class="card" style="padding: 1.25rem 1.5rem; background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.4); margin-bottom: 2rem;">
+        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+          <i class="fa-solid fa-circle-info" style="color: #F59E0B; font-size: 1.25rem; margin-top: 2px;"></i>
+          <div>
+            <strong style="color: #F59E0B;">Referral Rewards in Preview</strong>
+            <p style="font-size: 0.85rem; margin-top: 0.25rem; color: var(--text-secondary);">
+              The referral tracking engine is active and logs verified signups. Commercial commissions and subscription rewards will be activated in the next phase according to published platform rules.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- REFERRAL LINK CARD -->
+      <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
+        <h4 style="margin-bottom: 0.75rem;">Your Verified Invite Link</h4>
+        <p style="font-size: 0.9rem; margin-bottom: 1.25rem;">Any creator who signs up with your link will be linked to your account.</p>
+        
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" class="form-control" id="ref-page-link" readonly value="Log in to view your personalized referral link">
+          <button class="btn btn-primary" id="btn-copy-ref"><i class="fa-solid fa-copy"></i> Copy Link</button>
+        </div>
+      </div>
+
+      <!-- RULES SECTION -->
+      <div class="card" style="padding: 2rem;">
+        <h4 style="margin-bottom: 1rem;">Program Guidelines</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem; color: var(--text-secondary);">
+          <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Referrals must be genuine new accounts with unique verified email addresses.</li>
+          <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Self-referrals or automated bot registrations are strictly prohibited and flagged.</li>
+          <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Reward terms will be posted publicly before any payout or tier extension occurs.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 PixelCraft Technologies Inc. All rights reserved.</span>
+        <div>Create. Convert. Design. Simplify. • Community Referral Rewards</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = PixelCraftAuth.getUser();
+      const input = document.getElementById('ref-page-link');
+      const copyBtn = document.getElementById('btn-copy-ref');
+
+      if (user && user.referral_code) {
+        input.value = `${window.location.origin}/signup.html?ref=${user.referral_code}`;
+      }
+
+      copyBtn.onclick = () => {
+        if (!user) {
+          window.location.href = '/login.html';
+          return;
+        }
+        navigator.clipboard.writeText(input.value);
+        PixelCraftUX.showToast('Referral link copied to clipboard!', 'success');
+      };
+    });
+  </script>
+</body>
+</html>
+

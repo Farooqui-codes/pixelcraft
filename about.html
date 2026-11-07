@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About PixelCraft — The All-In-One Creative Productivity SaaS</title>
+  <meta name="description" content="Learn about PixelCraft's mission to simplify digital creative and document workflows with 30 professional browser-based tools.">
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/tools.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> All Tools</a></li>
+          <li><a href="/category.html?cat=image" class="nav-link">Image</a></li>
+          <li><a href="/category.html?cat=pdf" class="nav-link">PDF</a></li>
+          <li><a href="/category.html?cat=creator" class="nav-link">Creator</a></li>
+          <li><a href="/category.html?cat=business" class="nav-link">Business</a></li>
+          <li><a href="/pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="/about.html" class="nav-link active">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div class="auth-guest-only" style="display: flex; gap: 0.5rem;">
+            <a href="/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="/signup.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="auth-user-only" style="display: none;">
+            <a href="/workspace.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-house-laptop"></i> Workspace</a>
+          </div>
+          <button class="btn-icon mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="section" style="padding-top: 4.5rem; padding-bottom: 2.5rem; text-align: center;">
+    <div class="container">
+      <span class="badge cat-image" style="margin-bottom: 0.75rem;"><i class="fa-solid fa-compass"></i> Mission & Vision</span>
+      <h1>Crafting Simplicity for the Web</h1>
+      <p class="section-subtitle" style="max-width: 740px; margin: 0 auto;">PixelCraft was founded on a simple principle: digital creative and document utilities shouldn't be scattered across 20 clunky, ad-filled websites. They should be unified, blazingly fast, and respectful of user privacy.</p>
+    </div>
+  </div>
+
+  <!-- OUR CORE ENGINEERING PILLARS -->
+  <section class="section" style="background-color: var(--bg-secondary); padding-bottom: 5rem;">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-pro" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-gem"></i> OUR CORE VALUES</span>
+        <h2>Built on Modern Engineering Principles</h2>
+        <p class="section-subtitle">How we engineer a unified, lightning-fast, and secure digital platform.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1080px; margin: 0 auto;">
+        
+        <!-- Pillar 1 -->
+        <div class="card" style="padding: 2.25rem; border-color: var(--border-strong);">
+          <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: rgba(121, 87, 255, 0.12); color: var(--brand-purple); font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem;">Privacy-First Architecture</h3>
+          <p style="font-size: 0.925rem; line-height: 1.6; color: var(--text-secondary);">
+            Your media files, creative designs, and confidential documents remain yours. Processing is executed in the browser via native Web APIs, keeping your data strictly confidential and secure.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="card" style="padding: 2.25rem; border-color: var(--border-strong);">
+          <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: rgba(53, 185, 255, 0.12); color: var(--brand-blue); font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem;">Sub-Second Performance</h3>
+          <p style="font-size: 0.925rem; line-height: 1.6; color: var(--text-secondary);">
+            Engineered with Vanilla JavaScript and zero heavy runtime frameworks. Fast initial load, instantaneous canvas feedback, and sub-100ms conversions across desktop and mobile devices.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="card" style="padding: 2.25rem; border-color: var(--border-strong);">
+          <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.12); color: var(--accent-business); font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-cubes"></i>
+          </div>
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.3rem;">All-in-One Synergy</h3>
+          <p style="font-size: 0.925rem; line-height: 1.6; color: var(--text-secondary);">
+            One unified workspace replacing scattered single-purpose websites. Seamlessly move outputs from Image Compressors into Social Creators, or Brand Kits into Invoices and QR generators.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 PixelCraft Technologies Inc. All rights reserved.</span>
+        <div>Create. Convert. Design. Simplify. • Engineered for High-Performance Creators</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
+

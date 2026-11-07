@@ -1,0 +1,718 @@
+/* ====================================================================
+   PIXELCRAFT PREMIUM ANIMATIONS & UI INTERACTIONS
+   CSS Transitions, Keyframes, Hover Effects, and Reduced Motion
+   ==================================================================== */
+
+/* --------------------------------------------------------------------
+   1. KEYFRAMES & ENTRANCE ANIMATIONS
+   -------------------------------------------------------------------- */
+
+@keyframes pcFadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pcFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pcScaleIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.95, 0.95, 1);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pcGlowPulse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.22;
+  }
+  50% {
+    transform: translate3d(15px, -20px, 0) scale(1.08);
+    opacity: 0.32;
+  }
+}
+
+@keyframes pcFloatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pcSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------
+   2. HERO SECTION ENTRANCE (STAGGERED, NO LAYOUT SHIFT)
+   -------------------------------------------------------------------- */
+
+.hero-animate-badge {
+  animation: pcFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s backwards;
+}
+
+.hero-animate-title {
+  animation: pcFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+}
+
+.hero-animate-subtitle {
+  animation: pcFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s backwards;
+}
+
+.hero-animate-actions {
+  animation: pcFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+}
+
+/* Decorative Ambient Glow Orbs */
+.hero-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+  animation: pcGlowPulse 12s ease-in-out infinite alternate;
+}
+
+.hero-glow-orb.orb-purple {
+  width: 420px;
+  height: 420px;
+  top: -80px;
+  left: 15%;
+  background: radial-gradient(circle, rgba(121, 87, 255, 0.45) 0%, rgba(121, 87, 255, 0) 70%);
+}
+
+.hero-glow-orb.orb-blue {
+  width: 380px;
+  height: 380px;
+  top: 10px;
+  right: 15%;
+  background: radial-gradient(circle, rgba(53, 185, 255, 0.4) 0%, rgba(53, 185, 255, 0) 70%);
+  animation-delay: -6s;
+}
+
+/* --------------------------------------------------------------------
+   3. SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER)
+   -------------------------------------------------------------------- */
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Stagger delay classes for card grids */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* --------------------------------------------------------------------
+   4. CARD HOVER EFFECTS & STUDIO ACCENT GLOW
+   -------------------------------------------------------------------- */
+
+.card-interactive {
+  position: relative;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.24s ease;
+  will-change: transform, box-shadow;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-interactive:hover {
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.32), 0 0 20px -2px rgba(121, 87, 255, 0.2);
+    border-color: var(--brand-purple);
+  }
+
+  .card-interactive:hover .card-icon-box {
+    transform: scale(1.1) rotate(-3deg);
+  }
+
+  /* Category specific hover borders */
+  .card-interactive[data-category="image"]:hover {
+    border-color: var(--accent-image);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.32), 0 0 20px -2px rgba(121, 87, 255, 0.25);
+  }
+  .card-interactive[data-category="pdf"]:hover {
+    border-color: var(--accent-pdf);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.32), 0 0 20px -2px rgba(53, 185, 255, 0.25);
+  }
+  .card-interactive[data-category="creator"]:hover {
+    border-color: var(--accent-creator);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.32), 0 0 20px -2px rgba(255, 101, 132, 0.25);
+  }
+  .card-interactive[data-category="business"]:hover {
+    border-color: var(--accent-business);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.32), 0 0 20px -2px rgba(16, 185, 129, 0.25);
+  }
+  .card-interactive[data-category="qr"]:hover {
+    border-color: var(--accent-qr);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.32), 0 0 20px -2px rgba(20, 184, 166, 0.25);
+  }
+  .card-interactive[data-category="invitation"]:hover {
+    border-color: var(--accent-invitation);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.32), 0 0 20px -2px rgba(244, 63, 94, 0.25);
+  }
+  .card-interactive[data-category="text"]:hover {
+    border-color: var(--accent-text);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.32), 0 0 20px -2px rgba(245, 158, 11, 0.25);
+  }
+  .card-interactive[data-category="developer"]:hover {
+    border-color: var(--accent-developer);
+    box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.32), 0 0 20px -2px rgba(6, 182, 212, 0.25);
+  }
+}
+
+.card-icon-box {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------
+   5. BUTTON INTERACTIONS & FOCUS RINGS
+   -------------------------------------------------------------------- */
+
+.btn {
+  position: relative;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s ease,
+              border-color 0.2s ease;
+  user-select: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Accessible focus ring */
+.btn:focus-visible,
+.form-control:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 3px;
+}
+
+/* Loading button state */
+.btn.is-loading,
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.85;
+  color: transparent !important;
+}
+
+.btn.is-loading::after,
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 50%;
+  left: 50%;
+  margin: -9px 0 0 -9px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: pcSpin 0.75s linear infinite;
+}
+
+.btn-secondary.is-loading::after,
+.btn-secondary.btn-loading::after {
+  border: 2.5px solid rgba(121, 87, 255, 0.25);
+  border-top-color: var(--brand-purple);
+}
+
+/* --------------------------------------------------------------------
+   6. NAVBAR SCROLL EFFECT
+   -------------------------------------------------------------------- */
+
+.site-header {
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.site-header.scrolled {
+  background-color: var(--header-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border-bottom-color: var(--border-strong);
+}
+
+/* --------------------------------------------------------------------
+   7. TAP TO TOP / BACK TO TOP BUTTON
+   -------------------------------------------------------------------- */
+
+.tap-to-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 6px 20px rgba(121, 87, 255, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  z-index: 800;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s ease;
+}
+
+.tap-to-top-btn.is-visible,
+.tap-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+}
+
+.tap-to-top-btn:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: 0 10px 28px rgba(121, 87, 255, 0.6);
+}
+
+.tap-to-top-btn:active {
+  transform: translate3d(0, 0, 0) scale(0.95);
+}
+
+/* Mobile elevation so it doesn't overlap mobile bottom nav */
+@media (max-width: 768px) {
+  .tap-to-top-btn {
+    bottom: 84px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.05rem;
+  }
+}
+
+/* --------------------------------------------------------------------
+   8. MOBILE BOTTOM NAVIGATION
+   -------------------------------------------------------------------- */
+
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border-subtle);
+  z-index: 750;
+  padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  /* Ensure page content has bottom padding so nothing is hidden behind mobile bottom nav */
+  body {
+    padding-bottom: 74px;
+  }
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  flex: 1;
+  padding: 0.35rem 0.2rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: color 0.18s ease;
+}
+
+.mobile-nav-item i {
+  font-size: 1.2rem;
+}
+
+.mobile-nav-item.active,
+.mobile-nav-item:hover {
+  color: var(--brand-purple);
+}
+
+/* --------------------------------------------------------------------
+   9. INTERACTIVE BEFORE & AFTER COMPARISON SLIDER
+   -------------------------------------------------------------------- */
+
+.pc-comparison-slider {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  user-select: none;
+  touch-action: pan-y;
+  background-color: var(--bg-tertiary);
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pc-comparison-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.pc-comparison-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pc-slider-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  cursor: ew-resize;
+  z-index: 10;
+  touch-action: none;
+}
+
+.pc-slider-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23101426'%3E%3Cpath d='M8.5 12l4-4v8l-4-4zm7 0l-4 4V8l4 4z'/%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pc-slider-badge {
+  position: absolute;
+  top: 14px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  background-color: rgba(16, 20, 38, 0.85);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.pc-slider-badge.badge-before { left: 14px; }
+.pc-slider-badge.badge-after { right: 14px; }
+
+/* --------------------------------------------------------------------
+   10. ENHANCED DRAG & DROP ZONE
+   -------------------------------------------------------------------- */
+
+.file-dropzone {
+  position: relative;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.file-dropzone.drag-active {
+  border-color: var(--brand-purple) !important;
+  background-color: rgba(121, 87, 255, 0.08) !important;
+  transform: scale3d(1.01, 1.01, 1);
+  box-shadow: 0 0 24px rgba(121, 87, 255, 0.2);
+}
+
+.file-info-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+  animation: pcFadeUp 0.3s ease;
+}
+
+/* --------------------------------------------------------------------
+   11. UNDO / REDO CONTROLS BAR
+   -------------------------------------------------------------------- */
+
+.undo-redo-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.undo-redo-btn {
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------
+   12. LIGHTWEIGHT PAGE TRANSITION FADE
+   -------------------------------------------------------------------- */
+
+.page-enter-fade {
+  animation: pcFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --------------------------------------------------------------------
+   13. PREFERS-REDUCED-MOTION (FULL ACCESSIBILITY COMPLIANCE)
+   -------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-glow-orb {
+    display: none !important;
+  }
+
+  .tap-to-top-btn {
+    transition: none !important;
+  }
+
+  .card-interactive:hover {
+    transform: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------
+   14. MULTI-LANGUAGE RTL BIDIRECTIONAL LAYOUT
+   -------------------------------------------------------------------- */
+
+html[dir="rtl"],
+body.rtl-layout {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .nav-actions,
+body.rtl-layout .nav-actions {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[dir="rtl"] .sidebar,
+body.rtl-layout .sidebar {
+  border-right: none;
+  border-left: 1px solid var(--border-subtle);
+}
+
+html[dir="rtl"] .tap-to-top-btn,
+body.rtl-layout .tap-to-top-btn {
+  right: auto;
+  left: 28px;
+}
+
+html[dir="rtl"] .fa-arrow-right {
+  transform: rotate(180deg);
+}
+
+html[dir="rtl"] .dropdown-menu {
+  left: 0;
+  right: auto;
+}
+
+/* --------------------------------------------------------------------
+   15. ADVANCED SAAS MICRO-INTERACTIONS & GLOW ANIMATIONS
+   -------------------------------------------------------------------- */
+
+/* A. Button Shine Sweep Effect */
+@keyframes pcBtnShine {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  50%, 100% { transform: translateX(200%) skewX(-20deg); }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-150%) skewX(-20deg);
+  animation: pcBtnShine 6s infinite;
+  pointer-events: none;
+}
+
+/* B. Pulsing Live Status Dot */
+@keyframes pcPulseRing {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10B981;
+  animation: pcPulseRing 2.2s infinite;
+  margin-right: 6px;
+}
+
+/* C. Notification Bell Ring Animation */
+@keyframes pcBellRing {
+  0%, 100% { transform: rotate(0); }
+  10%, 30% { transform: rotate(12deg); }
+  20%, 40% { transform: rotate(-12deg); }
+  50% { transform: rotate(0); }
+}
+
+.bell-ring:hover {
+  animation: pcBellRing 0.8s ease-in-out;
+  transform-origin: top center;
+}
+
+/* D. Mega-Menu Dropdown Animation */
+@keyframes pcDropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), var(--brand-glow);
+  padding: 1.5rem;
+  min-width: 540px;
+  display: none;
+  z-index: 1000;
+  animation: pcDropdownSlide 0.28s var(--transition-bounce);
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.active .nav-dropdown-menu {
+  display: block;
+}
+
+.nav-dropdown-arrow {
+  transition: transform var(--transition-fast);
+}
+
+.nav-dropdown:hover .nav-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* E. Gradient Border Shimmer Card */
+.card-shimmer {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--card-border);
+  transition: all var(--transition-normal);
+}
+
+.card-shimmer:hover {
+  border-color: transparent;
+  box-shadow: var(--shadow-lg), var(--brand-glow);
+  transform: translateY(-4px);
+}
+
+/* F. Floating Badge Animation */
+.floating-element {
+  animation: pcFloatSlow 5s ease-in-out infinite;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recent Tool Activity — PixelCraft</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container-fluid">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="user-name-display" style="font-weight: 600;">Creator</span>
+            <button class="btn btn-ghost btn-sm btn-logout" style="color: #EF4444;"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <ul class="sidebar-nav">
+        <li><a href="/workspace.html" class="sidebar-link"><i class="fa-solid fa-house-laptop"></i> <span class="sidebar-text">Overview</span></a></li>
+        <li><a href="/projects.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> <span class="sidebar-text">My Projects</span></a></li>
+        <li><a href="/favorites.html" class="sidebar-link"><i class="fa-solid fa-star"></i> <span class="sidebar-text">Favorites</span></a></li>
+        <li><a href="/activity.html" class="sidebar-link active"><i class="fa-solid fa-clock-rotate-left"></i> <span class="sidebar-text">Recent Activity</span></a></li>
+        <li><a href="/tools.html" class="sidebar-link"><i class="fa-solid fa-toolbox"></i> <span class="sidebar-text">All 30 Tools</span></a></li>
+        <li><a href="/profile.html" class="sidebar-link"><i class="fa-solid fa-user-gear"></i> <span class="sidebar-text">User Profile</span></a></li>
+        <li><a href="/settings.html" class="sidebar-link"><i class="fa-solid fa-sliders"></i> <span class="sidebar-text">Settings</span></a></li>
+        <li><a href="/pricing.html" class="sidebar-link"><i class="fa-solid fa-tags"></i> <span class="sidebar-text">Upgrade Plan</span></a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2>Activity, Analytics & Usage History</h2>
+          <p class="section-subtitle" style="margin-top: 0.25rem;">A secure, private ledger of your creative tool executions, 30-day heatmap, and project edits.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" style="color: #EF4444; border-color: rgba(239, 68, 68, 0.3);" onclick="PixelCraftWorkspace.clearHistory()">
+          <i class="fa-solid fa-trash-can"></i> Clear Activity History
+        </button>
+      </div>
+
+      <!-- ACTIVITY STATS & 30-DAY HEATMAP -->
+      <div id="activity-stats-summary"></div>
+      <div id="activity-calendar-heatmap"></div>
+      <div id="activity-recent-projects"></div>
+
+      <!-- RECENT TOOLS GRID -->
+      <div style="margin-top: 2rem;">
+        <h3 style="font-size: 1.25rem; margin-bottom: 1rem;"><i class="fa-solid fa-clock-rotate-left"></i> Chronological Tool Runs</h3>
+        <div id="recent-tools-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/notifications.js"></script>
+  <script src="/assets/js/pwa.js"></script>
+  <script src="/assets/js/tools-engine.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/workspace.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!PixelCraftAuth.requireAuth()) return;
+      PixelCraftWorkspace.loadRecentActivity();
+      PixelCraftWorkspace.loadActivityStats();
+    });
+  </script>
+</body>
+</html>
+

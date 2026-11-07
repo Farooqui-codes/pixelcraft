@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('pixelcraft_theme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All 30 Online Tools — PixelCraft Creative Suite</title>
+  <meta name="description" content="Browse all 30 creative and developer tools in PixelCraft. Image editing, PDF processing, social graphics, business documents, QR codes, and utilities.">
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/tools.html" class="nav-link active"><i class="fa-solid fa-grid-2"></i> All Tools</a></li>
+          <li><a href="/category.html?cat=image" class="nav-link">Image</a></li>
+          <li><a href="/category.html?cat=pdf" class="nav-link">PDF</a></li>
+          <li><a href="/category.html?cat=creator" class="nav-link">Creator</a></li>
+          <li><a href="/category.html?cat=business" class="nav-link">Business</a></li>
+          <li><a href="/pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div class="auth-guest-only" style="display: flex; gap: 0.5rem;">
+            <a href="/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="/signup.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="auth-user-only" style="display: none;">
+            <a href="/workspace.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-house-laptop"></i> Workspace</a>
+          </div>
+          <button class="btn-icon mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CATALOG HERO & SEARCH -->
+  <div class="section" style="padding-top: 3.5rem; padding-bottom: 2rem;">
+    <div class="container">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 2.5rem;">
+        <span class="badge badge-free" style="margin-bottom: 0.75rem;"><i class="fa-solid fa-toolbox"></i> Complete Catalog</span>
+        <h1>30 Precision Online Tools</h1>
+        <p class="section-subtitle">Search, filter, and launch tools instantly. Zero installation required.</p>
+        
+        <div style="position: relative; margin-top: 1.5rem; max-width: 580px; margin-left: auto; margin-right: auto;">
+          <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+          <input type="text" id="tool-search-input" class="form-control" placeholder="Search by name, category, or keyword..." style="padding-left: 2.8rem; font-size: 1.05rem; height: 50px; border-radius: var(--radius-full);">
+        </div>
+      </div>
+
+      <!-- CATEGORY PILL FILTER BAR -->
+      <div style="display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 1rem; justify-content: center; flex-wrap: wrap;" id="category-filter-bar">
+        <button class="btn btn-primary btn-sm cat-btn active" data-cat="all">All (30)</button>
+        <button class="btn btn-secondary btn-sm cat-btn" data-cat="image">Image Studio (5)</button>
+        <button class="btn btn-secondary btn-sm cat-btn" data-cat="pdf">PDF Studio (5)</button>
+        <button class="btn btn-secondary btn-sm cat-btn" data-cat="creator">Creator Studio (4)</button>
+        <button class="btn btn-secondary btn-sm cat-btn" data-cat="business">Business Studio (4)</button>
+        <button class="btn btn-secondary btn-sm cat-btn" data-cat="qr">QR Studio (4)</button>
+        <button class="btn btn-secondary btn-sm cat-btn" data-cat="invitation">Invitation Studio (3)</button>
+        <button class="btn btn-secondary btn-sm cat-btn" data-cat="text">Text Studio (3)</button>
+        <button class="btn btn-secondary btn-sm cat-btn" data-cat="developer">Developer Studio (2)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLS GRID -->
+  <div class="section" style="padding-top: 1rem;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem;" id="catalog-tools-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 PixelCraft Technologies Inc. All rights reserved.</span>
+        <div>Create. Convert. Design. Simplify. • 30 Browser-Based Production Tools</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/notifications.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/pwa.js"></script>
+  <script src="/assets/js/tools-engine.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('catalog-tools-grid');
+      const searchInput = document.getElementById('tool-search-input');
+      const catBtns = document.querySelectorAll('.cat-btn');
+
+      let currentCat = 'all';
+      let searchQuery = '';
+
+      function render() {
+        let tools = window.PIXELCRAFT_TOOLS || [];
+        if (currentCat !== 'all') {
+          tools = tools.filter(t => t.category === currentCat);
+        }
+        if (searchQuery) {
+          tools = tools.filter(t => 
+            t.name.toLowerCase().includes(searchQuery) ||
+            t.description.toLowerCase().includes(searchQuery) ||
+            t.keywords.some(k => k.toLowerCase().includes(searchQuery))
+          );
+        }
+
+        if (tools.length === 0) {
+          grid.innerHTML = `
+            <div class="empty-state" style="grid-column: 1 / -1; padding: 4rem 1rem;">
+              <i class="fa-solid fa-face-frown empty-state-icon"></i>
+              <h4>No tools match "${searchQuery}"</h4>
+              <p>Try searching with another keyword or reset the category filter.</p>
+              <button class="btn btn-secondary btn-sm" style="margin-top: 1rem;" onclick="document.getElementById('tool-search-input').value=''; document.querySelector('[data-cat=all]').click();">Reset Filters</button>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = tools.map((t, idx) => `
+          <div class="card card-interactive reveal-on-scroll reveal-delay-${(idx % 4) + 1}" data-category="${t.category}" onclick="window.location.href='/tool.html?id=${t.id}'">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.85rem;">
+              <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.1); color: ${t.accentColor}; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                <i class="fa-solid ${t.icon}"></i>
+              </div>
+              <span class="badge cat-${t.category}">${t.categoryName}</span>
+            </div>
+            <h4 style="margin-bottom: 0.35rem; font-size: 1.1rem;">${t.name}</h4>
+            <p style="font-size: 0.85rem; line-height: 1.5; margin-bottom: 1.25rem;">${t.description}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle);">
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem;"></i></span>
+              <span class="badge badge-free">FREE</span>
+            </div>
+          </div>
+        `).join('');
+
+        if (window.PixelCraftUX && PixelCraftUX.initScrollReveal) {
+          PixelCraftUX.initScrollReveal();
+        }
+      }
+
+      catBtns.forEach(btn => {
+        btn.onclick = () => {
+          catBtns.forEach(b => {
+            b.className = 'btn btn-secondary btn-sm cat-btn';
+          });
+          btn.className = 'btn btn-primary btn-sm cat-btn active';
+          currentCat = btn.dataset.cat;
+          render();
+        };
+      });
+
+      searchInput.oninput = PixelCraftUX.debounce((e) => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        render();
+      }, 250);
+
+      render();
+    });
+  </script>
+</body>
+</html>
+

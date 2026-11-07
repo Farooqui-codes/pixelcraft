@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('pixelcraft_theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e) {}
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing & Plans — PixelCraft</title>
+  <meta name="description" content="Simple, transparent pricing for PixelCraft. Free forever, Pro for serious creators, and Business for teams.">
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-icon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/index.html" class="brand-link">
+          <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
+        </a>
+        <ul class="nav-links">
+          <li><a href="/tools.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> All Tools</a></li>
+          <li><a href="/category.html?cat=image" class="nav-link">Image</a></li>
+          <li><a href="/category.html?cat=pdf" class="nav-link">PDF</a></li>
+          <li><a href="/category.html?cat=creator" class="nav-link">Creator</a></li>
+          <li><a href="/category.html?cat=business" class="nav-link">Business</a></li>
+          <li><a href="/pricing.html" class="nav-link active">Pricing</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn btn-secondary btn-sm open-cmd-palette">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <kbd class="cmd-shortcut-badge">Ctrl K</kbd>
+          </button>
+          <button class="btn-icon theme-toggle-btn"><i class="fa-solid fa-sun theme-toggle-icon"></i></button>
+          <div class="auth-guest-only" style="display: flex; gap: 0.5rem;">
+            <a href="/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="/signup.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="auth-user-only" style="display: none;">
+            <a href="/workspace.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-house-laptop"></i> Workspace</a>
+          </div>
+          <button class="btn-icon mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PRICING HERO -->
+  <div class="section" style="padding-top: 4rem; padding-bottom: 2rem; text-align: center;">
+    <div class="container">
+      <span class="badge badge-pro" style="margin-bottom: 1rem;"><i class="fa-solid fa-gem"></i> Transparent Pricing</span>
+      <h1>Plans Crafted for Every Creator</h1>
+      <p class="section-subtitle">Start for free with standard tools, or upgrade to unlock high storage, batch processing, and business workflows.</p>
+
+      <!-- PROMO CODE BAR -->
+      <div style="max-width: 440px; margin: 1.5rem auto 0; display: flex; gap: 0.5rem; justify-content: center;">
+        <input type="text" id="promo-input" class="form-control form-control-sm" placeholder="Have a promo code? (e.g. LAUNCH50)" style="text-transform: uppercase;">
+        <button class="btn btn-secondary btn-sm" id="btn-apply-promo"><i class="fa-solid fa-tag"></i> Apply</button>
+      </div>
+      <div id="promo-feedback" style="margin-top: 0.5rem; font-size: 0.85rem;"></div>
+    </div>
+  </div>
+
+  <!-- PRICING TIERS -->
+  <div class="section" style="padding-top: 1rem; padding-bottom: 5rem;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto;">
+        
+        <!-- FREE PLAN -->
+        <div class="card" style="display: flex; flex-direction: column; padding: 2rem;">
+          <div style="margin-bottom: 1.5rem;">
+            <span class="badge badge-free" style="margin-bottom: 0.75rem;">STARTER</span>
+            <h3>Free</h3>
+            <div style="font-size: 2.5rem; font-weight: 800; margin: 0.75rem 0;" id="price-free">₹0 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/month</span></div>
+            <p style="font-size: 0.9rem;">Ideal for occasional casual edits, guests, and testing out the platform.</p>
+          </div>
+
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.925rem; margin-bottom: 2rem; flex: 1;">
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Access to standard free tools</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> <span id="limit-free-projects">5</span> saved cloud projects</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> <span id="limit-free-daily">10</span> operations per day</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Client-side browser processing</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Community Help Centre access</li>
+          </ul>
+
+          <button class="btn btn-secondary" id="btn-plan-free" style="width: 100%;" disabled>Current Free Tier</button>
+        </div>
+
+        <!-- PRO PLAN (RECOMMENDED) -->
+        <div class="card" style="display: flex; flex-direction: column; padding: 2rem; border-color: var(--brand-purple); box-shadow: var(--shadow-glow); position: relative;">
+          <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%);">
+            <span class="badge badge-pro" style="padding: 0.35rem 1rem;">MOST POPULAR</span>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <span class="badge cat-image" style="margin-bottom: 0.75rem;">CREATORS & FREELANCERS</span>
+            <h3 style="color: var(--brand-purple);">Pro</h3>
+            <div style="font-size: 2.5rem; font-weight: 800; margin: 0.75rem 0;" id="price-pro">₹149 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/month</span></div>
+            <p style="font-size: 0.9rem;">Unlocks full power for daily creators, YouTubers, and freelancers.</p>
+          </div>
+
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.925rem; margin-bottom: 2rem; flex: 1;">
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> All 30 studio tools unlocked</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> <span id="limit-pro-projects">50</span> saved cloud projects</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> <span id="limit-pro-daily">100</span> operations per day</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Batch processing & SVG vector exports</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Premium templates for posts & invites</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> High-speed priority cloud processing</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Dedicated email support</li>
+          </ul>
+
+          <button class="btn btn-primary" id="btn-upgrade-pro" style="width: 100%;"><i class="fa-solid fa-bolt"></i> Upgrade to Pro</button>
+        </div>
+
+        <!-- BUSINESS PLAN -->
+        <div class="card" style="display: flex; flex-direction: column; padding: 2rem;">
+          <div style="margin-bottom: 1.5rem;">
+            <span class="badge badge-business" style="margin-bottom: 0.75rem;">TEAMS & BUSINESSES</span>
+            <h3>Business</h3>
+            <div style="font-size: 2.5rem; font-weight: 800; margin: 0.75rem 0;" id="price-biz">₹399 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/month</span></div>
+            <p style="font-size: 0.9rem;">Maximum capacity, commercial invoices, and zero rate limits.</p>
+          </div>
+
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.925rem; margin-bottom: 2rem; flex: 1;">
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Everything in Pro included</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> <span id="limit-biz-projects">500</span> saved cloud projects</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> <span id="limit-biz-daily">1000</span> operations per day</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Bulk commercial invoicing & quotations</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Team workspace & shared project access</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> 5GB cloud storage capacity</li>
+            <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> 24/7 Priority assistance & audit reports</li>
+          </ul>
+
+          <button class="btn btn-secondary" id="btn-upgrade-biz" style="width: 100%;">Upgrade to Business</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL PLACEHOLDER -->
+  <div id="checkout-modal-container"></div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 PixelCraft Technologies Inc. All rights reserved.</span>
+        <div>Create. Convert. Design. Simplify. • Transparent SaaS Pricing</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/notifications.js"></script>
+  <script src="/assets/js/ux-patterns.js"></script>
+  <script src="/assets/js/pwa.js"></script>
+  <script src="/assets/js/tools-engine.js"></script>
+  <script src="/assets/js/command-palette.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let plansConfig = null;
+      let activeCoupon = null;
+
+      // Fetch dynamic plan prices & limits
+      try {
+        const res = await PixelCraftAPI.subscriptions.plans();
+        if (res.success && res.plans) {
+          plansConfig = res.plans;
+          document.getElementById('price-pro').innerHTML = `₹${plansConfig.pro.priceMonthly} <span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/month</span>`;
+          document.getElementById('price-biz').innerHTML = `₹${plansConfig.business.priceMonthly} <span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/month</span>`;
+
+          document.getElementById('limit-free-projects').textContent = plansConfig.free.maxProjects;
+          document.getElementById('limit-free-daily').textContent = plansConfig.free.dailyOperationsLimit;
+          document.getElementById('limit-pro-projects').textContent = plansConfig.pro.maxProjects;
+          document.getElementById('limit-pro-daily').textContent = plansConfig.pro.dailyOperationsLimit;
+          document.getElementById('limit-biz-projects').textContent = plansConfig.business.maxProjects;
+          document.getElementById('limit-biz-daily').textContent = plansConfig.business.dailyOperationsLimit;
+        }
+      } catch (e) {
+        console.warn('Could not load dynamic pricing, using defaults:', e);
+      }
+
+      // Update buttons if user already subscribed
+      const user = PixelCraftAuth.getUser();
+      const currentPlan = user ? (user.plan || 'free') : 'free';
+
+      if (currentPlan === 'pro') {
+        const btnPro = document.getElementById('btn-upgrade-pro');
+        btnPro.className = 'btn btn-secondary';
+        btnPro.innerHTML = '<i class="fa-solid fa-check"></i> Current Plan';
+        btnPro.disabled = true;
+      } else if (currentPlan === 'business') {
+        const btnBiz = document.getElementById('btn-upgrade-biz');
+        btnBiz.className = 'btn btn-secondary';
+        btnBiz.innerHTML = '<i class="fa-solid fa-check"></i> Current Plan';
+        btnBiz.disabled = true;
+      }
+
+      // Coupon application
+      const promoInput = document.getElementById('promo-input');
+      const promoBtn = document.getElementById('btn-apply-promo');
+      const promoFeedback = document.getElementById('promo-feedback');
+
+      promoBtn.onclick = async () => {
+        const code = promoInput.value.trim().toUpperCase();
+        if (!code) return;
+
+        try {
+          const res = await PixelCraftAPI.subscriptions.applyCoupon(code, 'pro');
+          activeCoupon = res;
+          promoFeedback.innerHTML = `<span style="color: #10B981;"><i class="fa-solid fa-check"></i> ${res.message}</span>`;
+          PixelCraftUX.showToast(res.message, 'success');
+        } catch (err) {
+          activeCoupon = null;
+          promoFeedback.innerHTML = `<span style="color: #EF4444;"><i class="fa-solid fa-triangle-exclamation"></i> ${err.message}</span>`;
+        }
+      };
+
+      // Open checkout dialog
+      function showCheckoutModal(targetPlan) {
+        if (!PixelCraftAuth.isLoggedIn()) {
+          window.location.href = `/signup.html?plan=${targetPlan}`;
+          return;
+        }
+
+        const planData = plansConfig ? plansConfig[targetPlan] : { priceMonthly: targetPlan === 'business' ? 399 : 149, name: targetPlan.toUpperCase() };
+        let finalPrice = planData.priceMonthly;
+        let discountInfo = '';
+
+        if (activeCoupon) {
+          const discount = (finalPrice * activeCoupon.discountPercent) / 100;
+          finalPrice = Math.max(0, finalPrice - discount);
+          discountInfo = `
+            <div style="display: flex; justify-content: space-between; color: #10B981; font-size: 0.9rem; margin-bottom: 0.5rem;">
+              <span>Promo (${activeCoupon.code} - ${activeCoupon.discountPercent}% OFF):</span>
+              <span>-₹${discount.toFixed(2)}</span>
+            </div>
+          `;
+        }
+
+        const modalContainer = document.getElementById('checkout-modal-container');
+        modalContainer.innerHTML = `
+          <div class="modal-backdrop active">
+            <div class="modal-dialog" style="max-width: 480px;">
+              <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span class="badge ${targetPlan === 'business' ? 'badge-business' : 'badge-pro'}">${targetPlan.toUpperCase()} CHECKOUT</span>
+                  <h4 style="margin: 0;">Order Summary</h4>
+                </div>
+                <button class="btn-icon" id="checkout-close-btn"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+              <div class="modal-body" style="padding: 1.5rem;">
+                <div style="background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem;">
+                  <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem;">
+                    <span>PixelCraft ${targetPlan.toUpperCase()} (Monthly)</span>
+                    <span>₹${planData.priceMonthly}</span>
+                  </div>
+                  ${discountInfo}
+                  <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.35rem; color: var(--brand-purple); border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-top: 0.5rem;">
+                    <span>Total Due Today:</span>
+                    <span>₹${finalPrice.toFixed(2)}</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Payment Method</label>
+                  <select class="form-control" id="checkout-gateway">
+                    <option value="razorpay">Razorpay / UPI / NetBanking (Sandbox Verified)</option>
+                    <option value="card">Credit / Debit Card</option>
+                  </select>
+                </div>
+
+                <div class="badge badge-free" style="margin-bottom: 1.5rem; width: 100%; text-align: center; text-transform: none; line-height: 1.4; padding: 0.6rem 0.75rem;">
+                  <i class="fa-solid fa-shield-halved" style="color: #10B981;"></i> Secure 256-bit payment verification. Instant activation.
+                </div>
+
+                <button class="btn btn-primary btn-lg" id="checkout-pay-btn" style="width: 100%;">
+                  <i class="fa-solid fa-lock"></i> Pay ₹${finalPrice.toFixed(2)} & Activate ${targetPlan.toUpperCase()}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        modalContainer.querySelector('#checkout-close-btn').onclick = () => {
+          modalContainer.innerHTML = '';
+        };
+
+        const payBtn = modalContainer.querySelector('#checkout-pay-btn');
+        payBtn.onclick = async () => {
+          payBtn.disabled = true;
+          payBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verifying Payment...';
+
+          try {
+            const res = await PixelCraftAPI.subscriptions.upgrade(
+              targetPlan,
+              activeCoupon ? activeCoupon.code : null,
+              modalContainer.querySelector('#checkout-gateway').value
+            );
+
+            modalContainer.innerHTML = '';
+            PixelCraftUX.showToast(res.message, 'success');
+            setTimeout(() => {
+              window.location.href = '/workspace.html';
+            }, 1200);
+          } catch (err) {
+            payBtn.disabled = false;
+            payBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Retry Payment`;
+            PixelCraftUX.showToast(err.message, 'error');
+          }
+        };
+      }
+
+      document.getElementById('btn-upgrade-pro').onclick = () => showCheckoutModal('pro');
+      document.getElementById('btn-upgrade-biz').onclick = () => showCheckoutModal('business');
+    });
+  </script>
+</body>
+</html>
+
