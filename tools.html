@@ -112,6 +112,9 @@
     </div>
   </footer>
 
+  <script src="/assets/vendor/gsap/gsap.min.js"></script>
+  <script src="/assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="/assets/js/gsap-animations.js"></script>
   <script src="/assets/js/theme.js"></script>
   <script src="/assets/js/api.js"></script>
   <script src="/assets/js/auth.js"></script>
@@ -174,7 +177,9 @@
           </div>
         `).join('');
 
-        if (window.PixelCraftUX && PixelCraftUX.initScrollReveal) {
+        if (window.PixelCraftGSAP && window.PixelCraftGSAP.animateNewCards) {
+          window.PixelCraftGSAP.animateNewCards(Array.from(grid.querySelectorAll('.card')));
+        } else if (window.PixelCraftUX && PixelCraftUX.initScrollReveal) {
           PixelCraftUX.initScrollReveal();
         }
       }

@@ -24,6 +24,7 @@
   
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/tools.css">
@@ -37,7 +38,7 @@
       <nav class="navbar">
         <a href="/index.html" class="brand-link">
           <img src="/assets/logos/logo.svg" alt="PixelCraft Logo" class="brand-logo-img">
-          <span class="badge badge-pro" style="font-size: 0.65rem; padding: 2px 7px; letter-spacing: 0.5px;">SAAS 2.0</span>
+          <span class="badge badge-version" style="font-size: 0.65rem; padding: 2px 7px;">SAAS 2.0</span>
         </a>
 
         <ul class="nav-links">
@@ -212,11 +213,11 @@
         PixelCraft is the all-in-one online productivity platform for creators, freelancers, and developers. Compress images, merge PDFs, build invoices, design social graphics, and generate QR codes — effortlessly in your browser.
       </p>
       <div class="hero-actions hero-animate-actions">
-        <a href="/tools.html" class="btn btn-primary btn-lg">
-          <i class="fa-solid fa-rocket"></i> Explore All 30 Tools
-        </a>
-        <a href="/signup.html" class="btn btn-secondary btn-lg">
+        <a href="/signup.html" class="btn btn-primary btn-lg btn-shine">
           <i class="fa-solid fa-user-plus"></i> Start Free Workspace
+        </a>
+        <a href="/tools.html" class="btn btn-secondary btn-lg">
+          <i class="fa-solid fa-rocket"></i> Explore All 30 Tools
         </a>
       </div>
     </div>
@@ -234,113 +235,113 @@
         <!-- Image Studio -->
         <a href="/category.html?cat=image" class="card card-interactive reveal-on-scroll reveal-delay-1" data-category="image">
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.12); color: var(--accent-image); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.12); color: var(--accent-image); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
               <i class="fa-solid fa-image"></i>
             </div>
             <div>
-              <h4 style="margin: 0;">Image Studio</h4>
+              <h3 style="margin: 0; font-size: 1.15rem;">Image Studio</h3>
               <span class="badge cat-image">5 Tools</span>
             </div>
           </div>
-          <p style="font-size: 0.9rem;">Compress, resize, crop, convert formats between PNG/JPG/WEBP, and sample colors with interactive loupe.</p>
+          <p style="font-size: 0.875rem; color: var(--text-secondary);">Compress, resize, crop, convert formats between PNG/JPG/WEBP, and sample colors with interactive loupe.</p>
         </a>
 
         <!-- PDF Studio -->
         <a href="/category.html?cat=pdf" class="card card-interactive reveal-on-scroll reveal-delay-2" data-category="pdf">
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(53, 185, 255, 0.12); color: var(--accent-pdf); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(53, 185, 255, 0.12); color: var(--accent-pdf); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
               <i class="fa-solid fa-file-pdf"></i>
             </div>
             <div>
-              <h4 style="margin: 0;">PDF Studio</h4>
+              <h3 style="margin: 0; font-size: 1.15rem;">PDF Studio</h3>
               <span class="badge cat-pdf">5 Tools</span>
             </div>
           </div>
-          <p style="font-size: 0.9rem;">Merge multiple PDFs, extract page ranges, compress document streams, and convert between PDF and images.</p>
+          <p style="font-size: 0.875rem; color: var(--text-secondary);">Merge multiple PDFs, extract page ranges, compress document streams, and convert between PDF and images.</p>
         </a>
 
         <!-- Creator Studio -->
         <a href="/category.html?cat=creator" class="card card-interactive reveal-on-scroll reveal-delay-3" data-category="creator">
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(255, 101, 132, 0.12); color: var(--accent-creator); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(255, 101, 132, 0.12); color: var(--accent-creator); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
               <i class="fa-solid fa-wand-magic-sparkles"></i>
             </div>
             <div>
-              <h4 style="margin: 0;">Creator Studio</h4>
+              <h3 style="margin: 0; font-size: 1.15rem;">Creator Studio</h3>
               <span class="badge cat-creator">4 Tools</span>
             </div>
           </div>
-          <p style="font-size: 0.9rem;">Instagram posts (1080x1080), Stories (1080x1920), YouTube thumbnails (1280x720), and social caption generators.</p>
+          <p style="font-size: 0.875rem; color: var(--text-secondary);">Instagram posts (1080x1080), Stories (1080x1920), YouTube thumbnails (1280x720), and social caption generators.</p>
         </a>
 
         <!-- Business Studio -->
         <a href="/category.html?cat=business" class="card card-interactive reveal-on-scroll reveal-delay-4" data-category="business">
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(16, 185, 129, 0.12); color: var(--accent-business); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(16, 185, 129, 0.12); color: var(--accent-business); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
               <i class="fa-solid fa-briefcase"></i>
             </div>
             <div>
-              <h4 style="margin: 0;">Business Studio</h4>
+              <h3 style="margin: 0; font-size: 1.15rem;">Business Studio</h3>
               <span class="badge cat-business">4 Tools</span>
             </div>
           </div>
-          <p style="font-size: 0.9rem;">Invoices, quotations, GST calculations with CGST/SGST/IGST breakdown, and professional business cards.</p>
+          <p style="font-size: 0.875rem; color: var(--text-secondary);">Invoices, quotations, GST calculations with CGST/SGST/IGST breakdown, and professional business cards.</p>
         </a>
 
         <!-- QR Studio -->
         <a href="/category.html?cat=qr" class="card card-interactive reveal-on-scroll reveal-delay-1" data-category="qr">
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(20, 184, 166, 0.12); color: var(--accent-qr); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(20, 184, 166, 0.12); color: var(--accent-qr); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
               <i class="fa-solid fa-qrcode"></i>
             </div>
             <div>
-              <h4 style="margin: 0;">QR Studio</h4>
+              <h3 style="margin: 0; font-size: 1.15rem;">QR Studio</h3>
               <span class="badge cat-qr">4 Tools</span>
             </div>
           </div>
-          <p style="font-size: 0.9rem;">High-contrast QR generators for URLs, direct WhatsApp chats, Wi-Fi network credentials, and UPI payments.</p>
+          <p style="font-size: 0.875rem; color: var(--text-secondary);">High-contrast QR generators for URLs, direct WhatsApp chats, Wi-Fi network credentials, and UPI payments.</p>
         </a>
 
         <!-- Invitation Studio -->
         <a href="/category.html?cat=invitation" class="card card-interactive reveal-on-scroll reveal-delay-2" data-category="invitation">
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(244, 63, 94, 0.12); color: var(--accent-invitation); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(244, 63, 94, 0.12); color: var(--accent-invitation); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
               <i class="fa-solid fa-envelope-open-text"></i>
             </div>
             <div>
-              <h4 style="margin: 0;">Invitation Studio</h4>
+              <h3 style="margin: 0; font-size: 1.15rem;">Invitation Studio</h3>
               <span class="badge cat-invitation">3 Tools</span>
             </div>
           </div>
-          <p style="font-size: 0.9rem;">Digital invitation cards for weddings, birthdays, and Islamic occasions (Nikah/Walima) with Arabic & RTL layout.</p>
+          <p style="font-size: 0.875rem; color: var(--text-secondary);">Digital invitation cards for weddings, birthdays, and Islamic occasions (Nikah/Walima) with Arabic & RTL layout.</p>
         </a>
 
         <!-- Text Studio -->
         <a href="/category.html?cat=text" class="card card-interactive reveal-on-scroll reveal-delay-3" data-category="text">
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(245, 158, 11, 0.12); color: var(--accent-text); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(245, 158, 11, 0.12); color: var(--accent-text); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
               <i class="fa-solid fa-font"></i>
             </div>
             <div>
-              <h4 style="margin: 0;">Text Studio</h4>
+              <h3 style="margin: 0; font-size: 1.15rem;">Text Studio</h3>
               <span class="badge cat-text">3 Tools</span>
             </div>
           </div>
-          <p style="font-size: 0.9rem;">Word & character metrics, reading time estimations, multi-format case conversions, and custom Lorem Ipsum generator.</p>
+          <p style="font-size: 0.875rem; color: var(--text-secondary);">Word & character metrics, reading time estimations, multi-format case conversions, and sample text generation.</p>
         </a>
 
         <!-- Developer Studio -->
         <a href="/category.html?cat=developer" class="card card-interactive reveal-on-scroll reveal-delay-4" data-category="developer">
           <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(6, 182, 212, 0.12); color: var(--accent-developer); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(6, 182, 212, 0.12); color: var(--accent-developer); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
               <i class="fa-solid fa-code"></i>
             </div>
             <div>
-              <h4 style="margin: 0;">Developer Studio</h4>
+              <h3 style="margin: 0; font-size: 1.15rem;">Developer Studio</h3>
               <span class="badge cat-developer">2 Tools</span>
             </div>
           </div>
-          <p style="font-size: 0.9rem;">JSON syntax validator, prettifier, minifier, and bidirectional plain text & file Base64 encoders.</p>
+          <p style="font-size: 0.875rem; color: var(--text-secondary);">JSON syntax validator, prettifier, minifier, and bidirectional plain text & file Base64 encoders.</p>
         </a>
       </div>
     </div>
@@ -358,7 +359,101 @@
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;" id="home-featured-tools">
-        <!-- Rendered dynamically from window.PIXELCRAFT_TOOLS -->
+        <!-- Image Compressor -->
+        <div class="card card-interactive reveal-on-scroll reveal-delay-1" data-category="image" onclick="window.location.href='/tool.html?id=image-compressor'">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.1); color: #7957FF; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              <i class="fa-solid fa-compress"></i>
+            </div>
+            <span class="badge cat-image">Image Studio</span>
+          </div>
+          <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">Image Compressor</h3>
+          <p style="font-size: 0.875rem; line-height: 1.5; margin-bottom: 1.25rem; color: var(--text-secondary);">Compress PNG, JPEG, WEBP images with custom quality slider and instant side-by-side preview.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-size: 0.875rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
+            <span class="badge badge-free">FREE</span>
+          </div>
+        </div>
+
+        <!-- PDF Merger -->
+        <div class="card card-interactive reveal-on-scroll reveal-delay-2" data-category="pdf" onclick="window.location.href='/tool.html?id=pdf-merger'">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(53, 185, 255, 0.1); color: #35B9FF; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              <i class="fa-solid fa-object-group"></i>
+            </div>
+            <span class="badge cat-pdf">PDF Studio</span>
+          </div>
+          <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">PDF Merger</h3>
+          <p style="font-size: 0.875rem; line-height: 1.5; margin-bottom: 1.25rem; color: var(--text-secondary);">Combine multiple PDF documents into a single organized file with drag & drop ordering.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-size: 0.875rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
+            <span class="badge badge-free">FREE</span>
+          </div>
+        </div>
+
+        <!-- Instagram Post Maker -->
+        <div class="card card-interactive reveal-on-scroll reveal-delay-3" data-category="creator" onclick="window.location.href='/tool.html?id=instagram-post-maker'">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(255, 101, 132, 0.1); color: #FF6584; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              <i class="fa-solid fa-instagram"></i>
+            </div>
+            <span class="badge cat-creator">Creator Studio</span>
+          </div>
+          <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">Instagram Post Maker</h3>
+          <p style="font-size: 0.875rem; line-height: 1.5; margin-bottom: 1.25rem; color: var(--text-secondary);">Design square 1080x1080 posts with custom typography, gradients, shapes, stickers, and export.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-size: 0.875rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
+            <span class="badge badge-free">FREE</span>
+          </div>
+        </div>
+
+        <!-- Invoice Generator -->
+        <div class="card card-interactive reveal-on-scroll reveal-delay-4" data-category="business" onclick="window.location.href='/tool.html?id=invoice-generator'">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(16, 185, 129, 0.1); color: #10B981; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+            <span class="badge cat-business">Business Studio</span>
+          </div>
+          <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">Invoice Generator</h3>
+          <p style="font-size: 0.875rem; line-height: 1.5; margin-bottom: 1.25rem; color: var(--text-secondary);">Create professional business invoices with line items, tax, discounts, and instant PDF download.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-size: 0.875rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
+            <span class="badge badge-free">FREE</span>
+          </div>
+        </div>
+
+        <!-- URL QR Code Generator -->
+        <div class="card card-interactive reveal-on-scroll reveal-delay-1" data-category="qr" onclick="window.location.href='/tool.html?id=url-qr-generator'">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(20, 184, 166, 0.1); color: #14B8A6; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              <i class="fa-solid fa-link"></i>
+            </div>
+            <span class="badge cat-qr">QR Studio</span>
+          </div>
+          <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">URL QR Code Generator</h3>
+          <p style="font-size: 0.875rem; line-height: 1.5; margin-bottom: 1.25rem; color: var(--text-secondary);">Generate high-contrast QR codes for websites and links with custom colors and PNG/SVG export.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-size: 0.875rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
+            <span class="badge badge-free">FREE</span>
+          </div>
+        </div>
+
+        <!-- JSON Formatter & Validator -->
+        <div class="card card-interactive reveal-on-scroll reveal-delay-2" data-category="developer" onclick="window.location.href='/tool.html?id=json-formatter'">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(6, 182, 212, 0.1); color: #06B6D4; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <span class="badge cat-developer">Developer Studio</span>
+          </div>
+          <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">JSON Formatter & Validator</h3>
+          <p style="font-size: 0.875rem; line-height: 1.5; margin-bottom: 1.25rem; color: var(--text-secondary);">Format, prettify, minify, and validate JSON data with clear syntax error location indicators.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <span style="font-size: 0.875rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
+            <span class="badge badge-free">FREE</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -366,21 +461,25 @@
   <!-- SAAS HIGHLIGHTS & TRUST -->
   <section class="section" style="background-color: var(--bg-secondary);">
     <div class="container">
+      <div class="section-header reveal-on-scroll" style="margin-bottom: 2.5rem;">
+        <h2>Engineered for Trust & Performance</h2>
+        <p class="section-subtitle">A modern software architecture designed to respect your time, bandwidth, and sensitive files.</p>
+      </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
         <div class="card reveal-on-scroll reveal-delay-1" style="padding: 2rem;">
-          <i class="fa-solid fa-shield-halved" style="font-size: 2.2rem; color: #10B981; margin-bottom: 1rem;"></i>
-          <h4>Client-First Privacy</h4>
-          <p style="margin-top: 0.5rem; font-size: 0.95rem;">Files are processed locally in your browser memory wherever possible. We never sell, track, or unnecessarily store your sensitive documents.</p>
+          <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: #10B981; margin-bottom: 1rem;"></i>
+          <h3 style="font-size: 1.25rem;">Client-First Privacy</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-secondary);">Files are processed locally in your browser memory wherever possible. We never sell, track, or unnecessarily store your sensitive documents.</p>
         </div>
         <div class="card reveal-on-scroll reveal-delay-2" style="padding: 2rem;">
-          <i class="fa-solid fa-gauge-high" style="font-size: 2.2rem; color: var(--brand-blue); margin-bottom: 1rem;"></i>
-          <h4>Ultra Fast & Modern</h4>
-          <p style="margin-top: 0.5rem; font-size: 0.95rem;">Zero clunky build bloat. Clean Vanilla JavaScript with HTML5 Canvas API and native CSS optimizations for instantaneous rendering.</p>
+          <i class="fa-solid fa-gauge-high" style="font-size: 2rem; color: var(--brand-blue); margin-bottom: 1rem;"></i>
+          <h3 style="font-size: 1.25rem;">Ultra Fast & Modern</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-secondary);">Zero clunky build bloat. Clean Vanilla JavaScript with HTML5 Canvas API and native CSS optimizations for instantaneous rendering.</p>
         </div>
         <div class="card reveal-on-scroll reveal-delay-3" style="padding: 2rem;">
-          <i class="fa-solid fa-cloud" style="font-size: 2.2rem; color: var(--brand-purple); margin-bottom: 1rem;"></i>
-          <h4>Persistent Cloud Workspace</h4>
-          <p style="margin-top: 0.5rem; font-size: 0.95rem;">Sign in to save your custom designs, download previous invoices, duplicate templates, and bookmark your favorite daily utilities.</p>
+          <i class="fa-solid fa-cloud" style="font-size: 2rem; color: var(--brand-purple); margin-bottom: 1rem;"></i>
+          <h3 style="font-size: 1.25rem;">Persistent Cloud Workspace</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-secondary);">Sign in to save your custom designs, download previous invoices, duplicate templates, and bookmark your favorite daily utilities.</p>
         </div>
       </div>
     </div>
@@ -393,7 +492,7 @@
       <!-- High-End Pre-Footer CTA Banner Card -->
       <div class="card card-shimmer reveal-on-scroll" style="padding: 2.5rem 3rem; margin-bottom: 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%); border-color: var(--border-strong);">
         <div style="max-width: 580px;">
-          <span class="badge badge-pro" style="margin-bottom: 0.75rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> START CREATING NOW</span>
+          <span class="badge badge-pro" style="margin-bottom: 0.75rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> Start creating now</span>
           <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Ready to streamline your creative workflows?</h3>
           <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">Access 30 studio tools, customizable templates, and automated workflows right inside your browser. No complex installations or credit cards required.</p>
         </div>
@@ -473,8 +572,11 @@
 
       <!-- Footer Bottom Bar -->
       <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-        <div>
+        <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
           <span>&copy; 2026 PixelCraft Technologies Inc. All rights reserved.</span>
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn btn-ghost btn-sm" style="padding: 0.2rem 0.6rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; color: var(--text-muted);" aria-label="Scroll back to top of page">
+            <i class="fa-solid fa-arrow-up"></i> Back to top
+          </button>
         </div>
         <div style="display: flex; gap: 1.5rem; align-items: center; font-size: 0.85rem;">
           <span><i class="fa-solid fa-lock" style="color: #10B981; margin-right: 4px;"></i> 256-bit SSL Encrypted</span>
@@ -486,6 +588,9 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="/assets/vendor/gsap/gsap.min.js"></script>
+  <script src="/assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="/assets/js/gsap-animations.js"></script>
   <script src="/assets/js/theme.js"></script>
   <script src="/assets/js/api.js"></script>
   <script src="/assets/js/auth.js"></script>
@@ -503,8 +608,8 @@
         PixelCraftI18n.renderLanguageSelector('i18n-lang-selector-container');
       }
       const featuredContainer = document.getElementById('home-featured-tools');
-      if (featuredContainer && window.PIXELCRAFT_TOOLS) {
-        // Display 6 popular tools on homepage
+      if (featuredContainer && window.PIXELCRAFT_TOOLS && !featuredContainer.children.length) {
+        // Fallback dynamic populate if container was empty
         const popularIds = ['image-compressor', 'pdf-merger', 'instagram-post-maker', 'invoice-generator', 'url-qr-generator', 'json-formatter'];
         const tools = window.PIXELCRAFT_TOOLS.filter(t => popularIds.includes(t.id));
 
@@ -516,17 +621,17 @@
               </div>
               <span class="badge cat-${t.category}">${t.categoryName}</span>
             </div>
-            <h4 style="margin-bottom: 0.4rem;">${t.name}</h4>
-            <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.25rem;">${t.description}</p>
+            <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">${t.name}</h3>
+            <p style="font-size: 0.875rem; line-height: 1.5; margin-bottom: 1.25rem; color: var(--text-secondary);">${t.description}</p>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-              <span style="font-size: 0.85rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
+              <span style="font-size: 0.875rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
               <span class="badge badge-free">FREE</span>
             </div>
           </div>
         `).join('');
-        if (window.PixelCraftUX && PixelCraftUX.initScrollReveal) {
-          PixelCraftUX.initScrollReveal();
-        }
+      }
+      if (window.PixelCraftUX && PixelCraftUX.initScrollReveal) {
+        PixelCraftUX.initScrollReveal();
       }
     });
   </script>

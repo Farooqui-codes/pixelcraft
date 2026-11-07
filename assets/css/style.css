@@ -212,7 +212,7 @@ p {
 .btn-primary {
   background: var(--brand-gradient);
   color: #FFFFFF;
-  border: none;
+  border: 1px solid transparent;
   box-shadow: 0 4px 14px rgba(121, 87, 255, 0.35);
 }
 
@@ -271,6 +271,7 @@ p {
   padding: 0.85rem 1.85rem;
   font-size: 1.05rem;
   border-radius: var(--radius-md);
+  min-height: 56px;
 }
 
 .btn-danger {
@@ -303,6 +304,14 @@ p {
 .badge-free {
   background-color: var(--bg-tertiary);
   color: var(--text-secondary);
+}
+
+.badge-version {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .badge-business {
