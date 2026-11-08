@@ -1,0 +1,10 @@
+# PixelCraft Production Robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /api/admin/
+Disallow: /api/private/
+
+# Host & Sitemap
+Host: https://pixelcraft.fmdumair07.workers.dev
+Sitemap: https://pixelcraft.fmdumair07.workers.dev/sitemap.xml

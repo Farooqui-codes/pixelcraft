@@ -39,20 +39,38 @@
     </div>
   </header>
 
-  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; text-align: center;">
-    <div style="max-width: 580px;">
-      <div style="font-size: 5.5rem; font-weight: 800; line-height: 1; margin-bottom: 1rem;" class="text-gradient">
+  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 4rem 1.5rem; text-align: center;">
+    <div style="max-width: 620px; width: 100%;">
+      <div style="font-size: 6rem; font-weight: 800; line-height: 1; margin-bottom: 1rem;" class="text-gradient">
         404
       </div>
-      <h2 style="margin-bottom: 1rem;">Page Not Found</h2>
-      <p style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 2rem;">
-        The page or tool you're looking for doesn't exist, has been relocated, or is temporarily unavailable.
+      <h1 style="font-size: 2.2rem; margin-bottom: 0.75rem;">Page Not Found</h1>
+      <p style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">
+        The page, tool, or document you're searching for might have been renamed, moved, or never existed in the matrix.
       </p>
 
+      <!-- 404 SEARCH BAR -->
+      <form action="/tools.html" method="GET" style="position: relative; max-width: 480px; margin: 0 auto 2rem;" onsubmit="if(!this.q.value.trim()){event.preventDefault(); window.PixelCraftPalette && window.PixelCraftPalette.open();}">
+        <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+        <input type="text" name="q" class="form-control" placeholder="Search 30 tools or press Ctrl+K..." style="padding-left: 2.8rem; height: 48px; border-radius: var(--radius-full);">
+      </form>
+
+      <!-- POPULAR TOOL SHORTCUTS -->
+      <div style="margin-bottom: 2.5rem;">
+        <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; display: block; margin-bottom: 0.75rem;">Popular Tool Shortcuts</span>
+        <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+          <a href="/tool.html?id=image-compressor" class="btn btn-secondary btn-sm" style="border-radius: var(--radius-full);"><i class="fa-solid fa-file-image" style="color: var(--accent-image);"></i> Compressor</a>
+          <a href="/tool.html?id=pdf-merger" class="btn btn-secondary btn-sm" style="border-radius: var(--radius-full);"><i class="fa-solid fa-file-pdf" style="color: var(--accent-pdf);"></i> PDF Merger</a>
+          <a href="/tool.html?id=instagram-post-maker" class="btn btn-secondary btn-sm" style="border-radius: var(--radius-full);"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-creator);"></i> Instagram Post</a>
+          <a href="/tool.html?id=invoice-generator" class="btn btn-secondary btn-sm" style="border-radius: var(--radius-full);"><i class="fa-solid fa-file-invoice-dollar" style="color: var(--accent-business);"></i> Invoices</a>
+          <a href="/tool.html?id=url-qr-generator" class="btn btn-secondary btn-sm" style="border-radius: var(--radius-full);"><i class="fa-solid fa-qrcode" style="color: var(--accent-qr);"></i> QR Codes</a>
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS -->
       <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <a href="/index.html" class="btn btn-primary"><i class="fa-solid fa-house"></i> Return Home</a>
-        <a href="/tools.html" class="btn btn-secondary"><i class="fa-solid fa-toolbox"></i> Explore 30 Tools</a>
-        <a href="/workspace.html" class="btn btn-ghost"><i class="fa-solid fa-house-laptop"></i> User Workspace</a>
+        <a href="/index.html" class="btn btn-primary btn-lg btn-shine"><i class="fa-solid fa-house"></i> Take Me Home</a>
+        <a href="/tools.html" class="btn btn-secondary btn-lg"><i class="fa-solid fa-toolbox"></i> Explore 30 Tools</a>
       </div>
     </div>
   </main>

@@ -61,7 +61,22 @@
 
         <div class="form-group">
           <label class="form-label">Create Password (Min 6 Characters)</label>
-          <input type="password" class="form-control" id="signup-password" required minlength="6" placeholder="••••••••" autocomplete="new-password">
+          <div style="position: relative;">
+            <input type="password" class="form-control" id="signup-password" required minlength="6" placeholder="••••••••" autocomplete="new-password" style="padding-right: 2.75rem;">
+            <button type="button" class="btn-icon" id="btn-toggle-signup-pass" style="position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; color: var(--text-muted);" title="Show or hide password">
+              <i class="fa-solid fa-eye" id="signup-eye-icon"></i>
+            </button>
+          </div>
+          <!-- Password Strength Indicator -->
+          <div style="margin-top: 0.5rem;" id="password-strength-wrap">
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; margin-bottom: 0.25rem;">
+              <span style="color: var(--text-muted);">Strength:</span>
+              <span id="strength-label" style="font-weight: 700; color: var(--text-muted);">Too short</span>
+            </div>
+            <div style="height: 4px; width: 100%; background: var(--bg-surface); border-radius: var(--radius-full); overflow: hidden;">
+              <div id="strength-bar" style="height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease;"></div>
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
@@ -113,6 +128,49 @@
       const refInput = document.getElementById('signup-ref');
       const errAlert = document.getElementById('signup-error-alert');
       const submitBtn = document.getElementById('signup-submit-btn');
+      const togglePassBtn = document.getElementById('btn-toggle-signup-pass');
+      const eyeIcon = document.getElementById('signup-eye-icon');
+      const strengthBar = document.getElementById('strength-bar');
+      const strengthLabel = document.getElementById('strength-label');
+
+      if (togglePassBtn && passInput) {
+        togglePassBtn.onclick = () => {
+          const isPass = passInput.type === 'password';
+          passInput.type = isPass ? 'text' : 'password';
+          eyeIcon.className = isPass ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+        };
+      }
+
+      passInput.oninput = () => {
+        const val = passInput.value;
+        let score = 0;
+        if (val.length >= 6) score++;
+        if (val.length >= 10) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+
+        if (val.length === 0) {
+          strengthBar.style.width = '0%';
+          strengthLabel.textContent = 'Too short';
+          strengthLabel.style.color = 'var(--text-muted)';
+        } else if (score <= 1) {
+          strengthBar.style.width = '25%';
+          strengthBar.style.backgroundColor = '#EF4444';
+          strengthLabel.textContent = 'Weak';
+          strengthLabel.style.color = '#EF4444';
+        } else if (score <= 3) {
+          strengthBar.style.width = '65%';
+          strengthBar.style.backgroundColor = '#F59E0B';
+          strengthLabel.textContent = 'Medium';
+          strengthLabel.style.color = '#F59E0B';
+        } else {
+          strengthBar.style.width = '100%';
+          strengthBar.style.backgroundColor = '#10B981';
+          strengthLabel.textContent = 'Strong';
+          strengthLabel.style.color = '#10B981';
+        }
+      };
 
       form.onsubmit = async (e) => {
         e.preventDefault();

@@ -120,6 +120,49 @@
         if (backdrop) backdrop.classList.remove('active');
     }
 
+    const STORAGE_KEY_RECENT = 'pixelcraft_recent_searches';
+
+    function getRecentSearches() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY_RECENT);
+            return raw ? JSON.parse(raw) : ['Image Compressor', 'PDF Merger', 'Instagram Post', 'QR Code'];
+        } catch (e) {
+            return ['Image Compressor', 'PDF Merger', 'Instagram Post', 'QR Code'];
+        }
+    }
+
+    function saveRecentSearch(term) {
+        if (!term || typeof term !== 'string') return;
+        term = term.trim();
+        if (!term) return;
+        try {
+            let list = getRecentSearches().filter(item => item.toLowerCase() !== term.toLowerCase());
+            list.unshift(term);
+            if (list.length > 6) list = list.slice(0, 6);
+            localStorage.setItem(STORAGE_KEY_RECENT, JSON.stringify(list));
+        } catch (e) {}
+    }
+
+    function clearRecentSearches() {
+        try {
+            localStorage.removeItem(STORAGE_KEY_RECENT);
+        } catch (e) {}
+    }
+
+    function fuzzyMatch(needle, haystack) {
+        needle = needle.toLowerCase();
+        haystack = haystack.toLowerCase();
+        if (haystack.includes(needle)) return true;
+        let nIdx = 0;
+        for (let hIdx = 0; hIdx < haystack.length; hIdx++) {
+            if (haystack[hIdx] === needle[nIdx]) {
+                nIdx++;
+                if (nIdx === needle.length) return true;
+            }
+        }
+        return nIdx === needle.length;
+    }
+
     function getCatalog() {
         return window.PIXELCRAFT_TOOLS || [];
     }
@@ -138,23 +181,60 @@
         list.innerHTML = '';
         const tools = getCatalog();
 
+        // Render Recent Searches Chips when query is empty
+        if (!query) {
+            const recents = getRecentSearches();
+            if (recents && recents.length > 0) {
+                const recentLi = document.createElement('li');
+                recentLi.className = 'cmd-recent-searches-box';
+                recentLi.style.cssText = 'padding: 0.75rem 1rem 0.5rem; border-bottom: 1px solid var(--border-subtle);';
+                recentLi.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">
+                        <span><i class="fa-solid fa-clock-rotate-left"></i> Recent Searches</span>
+                        <button type="button" class="btn-ghost" id="cmd-clear-recents-btn" style="padding: 2px 6px; font-size: 0.75rem; color: var(--text-muted);" title="Clear history">Clear</button>
+                    </div>
+                    <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;" id="cmd-recent-chips"></div>
+                `;
+                const chipsWrap = recentLi.querySelector('#cmd-recent-chips');
+                recents.forEach(r => {
+                    const chip = document.createElement('button');
+                    chip.type = 'button';
+                    chip.className = 'btn btn-secondary btn-sm';
+                    chip.style.cssText = 'padding: 0.2rem 0.6rem; font-size: 0.78rem; border-radius: var(--radius-full);';
+                    chip.textContent = r;
+                    chip.onclick = () => {
+                        input.value = r;
+                        clearBtn.style.display = 'inline-flex';
+                        renderResults(r.toLowerCase());
+                        input.focus();
+                    };
+                    chipsWrap.appendChild(chip);
+                });
+                recentLi.querySelector('#cmd-clear-recents-btn').onclick = () => {
+                    clearRecentSearches();
+                    renderResults('');
+                };
+                list.appendChild(recentLi);
+            }
+        }
+
         let matchedTools = tools;
         let matchedCategories = STUDIO_CATEGORIES;
         let matchedPages = QUICK_PAGES;
 
         if (query) {
             matchedTools = tools.filter(t => 
-                t.name.toLowerCase().includes(query) || 
-                t.categoryName.toLowerCase().includes(query) ||
-                (t.keywords && t.keywords.some(k => k.toLowerCase().includes(query)))
+                fuzzyMatch(query, t.name) || 
+                fuzzyMatch(query, t.categoryName) ||
+                (t.keywords && t.keywords.some(k => fuzzyMatch(query, k)))
             );
 
             matchedCategories = STUDIO_CATEGORIES.filter(c => 
-                c.name.toLowerCase().includes(query) || 
-                c.desc.toLowerCase().includes(query)
+                fuzzyMatch(query, c.name) || 
+                fuzzyMatch(query, c.desc)
             );
 
-            matchedPages = QUICK_PAGES.filter(p => p.name.toLowerCase().includes(query));
+            matchedPages = QUICK_PAGES.filter(p => fuzzyMatch(query, p.name));
         }
 
         currentResults = [];
@@ -277,6 +357,7 @@
                     <span class="badge" style="background: rgba(121, 87, 255, 0.12); color: ${t.accentColor}; font-size: 0.7rem;">LAUNCH</span>
                 `;
                 li.addEventListener('click', () => {
+                    saveRecentSearch(t.name);
                     window.location.href = `/tool.html?id=${t.id}`;
                     closePalette();
                 });
@@ -295,6 +376,7 @@
                     <i class="fa-solid fa-arrow-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
                 `;
                 li.addEventListener('click', () => {
+                    saveRecentSearch(c.name);
                     window.location.href = c.url;
                     closePalette();
                 });
@@ -313,6 +395,7 @@
                     <span class="badge badge-free" style="font-size: 0.7rem;">OPEN</span>
                 `;
                 li.addEventListener('click', () => {
+                    saveRecentSearch(p.title);
                     window.location.href = `/tool.html?id=${p.tool_id}&project_id=${p.id}`;
                     closePalette();
                 });
@@ -343,6 +426,7 @@
                     <i class="fa-solid fa-arrow-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
                 `;
                 li.addEventListener('click', () => {
+                    saveRecentSearch(p.name);
                     window.location.href = p.url;
                     closePalette();
                 });
@@ -375,14 +459,18 @@
             if (currentResults[selectedIndex]) {
                 const target = currentResults[selectedIndex];
                 if (target.type === 'tool') {
+                    saveRecentSearch(target.data.name);
                     window.location.href = `/tool.html?id=${target.data.id}`;
                 } else if (target.type === 'category') {
+                    saveRecentSearch(target.data.name);
                     window.location.href = target.data.url;
                 } else if (target.type === 'project') {
+                    saveRecentSearch(target.data.title);
                     window.location.href = `/tool.html?id=${target.data.tool_id}&project_id=${target.data.id}`;
                 } else if (target.type === 'action') {
                     target.data.action();
                 } else {
+                    saveRecentSearch(target.data.name);
                     window.location.href = target.data.url;
                 }
                 closePalette();

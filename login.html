@@ -59,7 +59,12 @@
             <label class="form-label" style="margin-bottom: 0;">Password</label>
             <a href="/forgot-password.html" style="font-size: 0.8rem; color: var(--brand-blue);">Forgot?</a>
           </div>
-          <input type="password" class="form-control" id="login-password" required placeholder="••••••••" autocomplete="current-password">
+          <div style="position: relative;">
+            <input type="password" class="form-control" id="login-password" required placeholder="••••••••" autocomplete="current-password" style="padding-right: 2.75rem;">
+            <button type="button" class="btn-icon" id="btn-toggle-login-pass" style="position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; color: var(--text-muted);" title="Show or hide password">
+              <i class="fa-solid fa-eye" id="login-eye-icon"></i>
+            </button>
+          </div>
         </div>
 
         <button type="submit" class="btn btn-primary" id="login-submit-btn" style="width: 100%; margin-top: 0.5rem;">
@@ -100,6 +105,16 @@
       const passInput = document.getElementById('login-password');
       const errAlert = document.getElementById('login-error-alert');
       const submitBtn = document.getElementById('login-submit-btn');
+      const togglePassBtn = document.getElementById('btn-toggle-login-pass');
+      const eyeIcon = document.getElementById('login-eye-icon');
+
+      if (togglePassBtn && passInput) {
+        togglePassBtn.onclick = () => {
+          const isPass = passInput.type === 'password';
+          passInput.type = isPass ? 'text' : 'password';
+          eyeIcon.className = isPass ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+        };
+      }
 
       form.onsubmit = async (e) => {
         e.preventDefault();

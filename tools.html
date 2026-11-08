@@ -90,6 +90,30 @@
         <button class="btn btn-secondary btn-sm cat-btn" data-cat="text">Text Studio (3)</button>
         <button class="btn btn-secondary btn-sm cat-btn" data-cat="developer">Developer Studio (2)</button>
       </div>
+
+      <!-- DIRECTORY TOOLBAR: SORT & VIEW & FAVORITES -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; padding: 0.75rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+          <button id="btn-toggle-favorites" class="btn btn-secondary btn-sm" title="Show only favorited tools">
+            <i class="fa-regular fa-heart" id="fav-filter-icon" style="color: #EF4444;"></i> Favorites (<span id="fav-count">0</span>)
+          </button>
+          <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--text-muted);">
+            <span>Sort by:</span>
+            <select id="tool-sort-select" class="form-control form-control-sm" style="width: auto; padding: 0.25rem 0.5rem; font-size: 0.85rem;">
+              <option value="popular">Most Popular</option>
+              <option value="name-asc">Name (A — Z)</option>
+              <option value="name-desc">Name (Z — A)</option>
+              <option value="category">Studio Category</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.35rem;">
+          <span style="font-size: 0.85rem; color: var(--text-muted); margin-right: 0.5rem;" id="tools-visible-count">30 tools</span>
+          <button id="btn-view-grid" class="btn btn-secondary btn-sm active" title="Grid View" style="padding: 0.35rem 0.6rem;"><i class="fa-solid fa-table-cells-large"></i></button>
+          <button id="btn-view-list" class="btn btn-secondary btn-sm" title="List View" style="padding: 0.35rem 0.6rem;"><i class="fa-solid fa-list"></i></button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -122,6 +146,7 @@
   <script src="/assets/js/notifications.js"></script>
   <script src="/assets/js/ux-patterns.js"></script>
   <script src="/assets/js/pwa.js"></script>
+  <script src="/assets/js/platform-data.js"></script>
   <script src="/assets/js/tools-engine.js"></script>
   <script src="/assets/js/command-palette.js"></script>
   <script src="/assets/js/main.js"></script>
@@ -131,51 +156,199 @@
       const grid = document.getElementById('catalog-tools-grid');
       const searchInput = document.getElementById('tool-search-input');
       const catBtns = document.querySelectorAll('.cat-btn');
+      const sortSelect = document.getElementById('tool-sort-select');
+      const favFilterBtn = document.getElementById('btn-toggle-favorites');
+      const favFilterIcon = document.getElementById('fav-filter-icon');
+      const favCountEl = document.getElementById('fav-count');
+      const visibleCountEl = document.getElementById('tools-visible-count');
+      const btnViewGrid = document.getElementById('btn-view-grid');
+      const btnViewList = document.getElementById('btn-view-list');
 
       let currentCat = 'all';
       let searchQuery = '';
+      let currentSort = 'popular';
+      let showOnlyFavorites = false;
+      let currentView = 'grid';
+
+      const POPULAR_IDS = ['image-compressor', 'pdf-merger', 'instagram-post-maker', 'invoice-generator', 'url-qr-generator', 'json-formatter'];
+      const NEW_IDS = ['wedding-invitation-maker', 'islamic-invitation-maker', 'word-counter', 'case-converter', 'base64-converter'];
+
+      function getFavorites() {
+        try {
+          const raw = localStorage.getItem('pixelcraft_fav_tools');
+          return raw ? JSON.parse(raw) : [];
+        } catch(e) {
+          return [];
+        }
+      }
+
+      function toggleFavorite(id, e) {
+        if (e) e.stopPropagation();
+        let favs = getFavorites();
+        if (favs.includes(id)) {
+          favs = favs.filter(item => item !== id);
+          PixelCraftUX.showToast('Removed from favorites', 'info');
+        } else {
+          favs.push(id);
+          PixelCraftUX.showToast('Added to favorites', 'success');
+        }
+        localStorage.setItem('pixelcraft_fav_tools', JSON.stringify(favs));
+        updateFavCount();
+        render();
+      }
+
+      function updateFavCount() {
+        const favs = getFavorites();
+        if (favCountEl) favCountEl.textContent = favs.length;
+      }
+      updateFavCount();
+
+      favFilterBtn.onclick = () => {
+        showOnlyFavorites = !showOnlyFavorites;
+        if (showOnlyFavorites) {
+          favFilterBtn.classList.remove('btn-secondary');
+          favFilterBtn.classList.add('btn-primary');
+          favFilterIcon.className = 'fa-solid fa-heart';
+        } else {
+          favFilterBtn.classList.remove('btn-primary');
+          favFilterBtn.classList.add('btn-secondary');
+          favFilterIcon.className = 'fa-regular fa-heart';
+        }
+        render();
+      };
+
+      sortSelect.onchange = (e) => {
+        currentSort = e.target.value;
+        render();
+      };
+
+      btnViewGrid.onclick = () => {
+        currentView = 'grid';
+        btnViewGrid.classList.add('active');
+        btnViewList.classList.remove('active');
+        grid.style.display = 'grid';
+        grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(290px, 1fr))';
+        render();
+      };
+
+      btnViewList.onclick = () => {
+        currentView = 'list';
+        btnViewList.classList.add('active');
+        btnViewGrid.classList.remove('active');
+        grid.style.display = 'flex';
+        grid.style.flexDirection = 'column';
+        render();
+      };
 
       function render() {
-        let tools = window.PIXELCRAFT_TOOLS || [];
+        let tools = window.PIXELCRAFT_TOOLS ? [...window.PIXELCRAFT_TOOLS] : [];
+        const favs = getFavorites();
+
         if (currentCat !== 'all') {
           tools = tools.filter(t => t.category === currentCat);
+        }
+        if (showOnlyFavorites) {
+          tools = tools.filter(t => favs.includes(t.id));
         }
         if (searchQuery) {
           tools = tools.filter(t => 
             t.name.toLowerCase().includes(searchQuery) ||
             t.description.toLowerCase().includes(searchQuery) ||
-            t.keywords.some(k => k.toLowerCase().includes(searchQuery))
+            (t.keywords && t.keywords.some(k => k.toLowerCase().includes(searchQuery)))
           );
         }
 
+        // Sorting
+        if (currentSort === 'name-asc') {
+          tools.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (currentSort === 'name-desc') {
+          tools.sort((a, b) => b.name.localeCompare(a.name));
+        } else if (currentSort === 'category') {
+          tools.sort((a, b) => a.category.localeCompare(b.category));
+        } else if (currentSort === 'popular') {
+          tools.sort((a, b) => {
+            const aPop = POPULAR_IDS.includes(a.id) ? 1 : 0;
+            const bPop = POPULAR_IDS.includes(b.id) ? 1 : 0;
+            return bPop - aPop;
+          });
+        }
+
+        if (visibleCountEl) visibleCountEl.textContent = `${tools.length} tool${tools.length === 1 ? '' : 's'}`;
+
         if (tools.length === 0) {
           grid.innerHTML = `
-            <div class="empty-state" style="grid-column: 1 / -1; padding: 4rem 1rem;">
+            <div class="empty-state" style="grid-column: 1 / -1; padding: 4rem 1rem; width: 100%;">
               <i class="fa-solid fa-face-frown empty-state-icon"></i>
-              <h4>No tools match "${searchQuery}"</h4>
-              <p>Try searching with another keyword or reset the category filter.</p>
-              <button class="btn btn-secondary btn-sm" style="margin-top: 1rem;" onclick="document.getElementById('tool-search-input').value=''; document.querySelector('[data-cat=all]').click();">Reset Filters</button>
+              <h4>No tools match current criteria</h4>
+              <p>Try resetting search or disabling the favorites filter.</p>
+              <button class="btn btn-secondary btn-sm" style="margin-top: 1rem;" onclick="document.getElementById('tool-search-input').value=''; if(document.getElementById('btn-toggle-favorites').classList.contains('btn-primary')) document.getElementById('btn-toggle-favorites').click(); document.querySelector('[data-cat=all]').click();">Reset All Filters</button>
             </div>
           `;
           return;
         }
 
-        grid.innerHTML = tools.map((t, idx) => `
-          <div class="card card-interactive reveal-on-scroll reveal-delay-${(idx % 4) + 1}" data-category="${t.category}" onclick="window.location.href='/tool.html?id=${t.id}'">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.85rem;">
-              <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.1); color: ${t.accentColor}; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
-                <i class="fa-solid ${t.icon}"></i>
+        if (currentView === 'list') {
+          grid.innerHTML = tools.map((t, idx) => {
+            const isFav = favs.includes(t.id);
+            const isPop = POPULAR_IDS.includes(t.id);
+            const isNew = NEW_IDS.includes(t.id);
+
+            return `
+              <div class="card card-interactive reveal-on-scroll" style="display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; gap: 1.5rem; width: 100%; cursor: pointer;" onclick="window.location.href='/tool.html?id=${t.id}'">
+                <div style="display: flex; align-items: center; gap: 1.25rem; min-width: 0;">
+                  <div style="width: 46px; height: 46px; flex-shrink: 0; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.1); color: ${t.accentColor}; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                    <i class="fa-solid ${t.icon}"></i>
+                  </div>
+                  <div style="min-width: 0;">
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.25rem;">
+                      <h4 style="margin: 0; font-size: 1.1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.name}</h4>
+                      <span class="badge cat-${t.category}" style="font-size: 0.72rem;">${t.categoryName}</span>
+                      ${isPop ? '<span class="badge badge-pro" style="font-size: 0.68rem;"><i class="fa-solid fa-fire"></i> POPULAR</span>' : ''}
+                      ${isNew ? '<span class="badge badge-free" style="font-size: 0.68rem;"><i class="fa-solid fa-sparkles"></i> NEW</span>' : ''}
+                    </div>
+                    <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.description}</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem; flex-shrink: 0;">
+                  <button class="btn-icon" style="color: ${isFav ? '#EF4444' : 'var(--text-muted)'}; font-size: 1.1rem;" onclick="event.stopPropagation(); window.toggleToolFav('${t.id}', event);" title="${isFav ? 'Remove Favorite' : 'Save Favorite'}">
+                    <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                  </button>
+                  <span class="btn btn-secondary btn-sm" style="font-weight: 600;">Launch <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 4px;"></i></span>
+                </div>
               </div>
-              <span class="badge cat-${t.category}">${t.categoryName}</span>
-            </div>
-            <h4 style="margin-bottom: 0.35rem; font-size: 1.1rem;">${t.name}</h4>
-            <p style="font-size: 0.85rem; line-height: 1.5; margin-bottom: 1.25rem;">${t.description}</p>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle);">
-              <span style="font-size: 0.85rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem;"></i></span>
-              <span class="badge badge-free">FREE</span>
-            </div>
-          </div>
-        `).join('');
+            `;
+          }).join('');
+        } else {
+          grid.innerHTML = tools.map((t, idx) => {
+            const isFav = favs.includes(t.id);
+            const isPop = POPULAR_IDS.includes(t.id);
+            const isNew = NEW_IDS.includes(t.id);
+
+            return `
+              <div class="card card-interactive reveal-on-scroll reveal-delay-${(idx % 4) + 1}" data-category="${t.category}" onclick="window.location.href='/tool.html?id=${t.id}'">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.85rem;">
+                  <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(121, 87, 255, 0.1); color: ${t.accentColor}; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                    <i class="fa-solid ${t.icon}"></i>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 0.4rem;">
+                    ${isPop ? '<span class="badge badge-pro" style="font-size: 0.68rem;"><i class="fa-solid fa-fire"></i> POPULAR</span>' : ''}
+                    ${isNew ? '<span class="badge badge-free" style="font-size: 0.68rem;"><i class="fa-solid fa-sparkles"></i> NEW</span>' : ''}
+                    <button class="btn-icon" style="color: ${isFav ? '#EF4444' : 'var(--text-muted)'}; font-size: 1rem; width: 30px; height: 30px;" onclick="event.stopPropagation(); window.toggleToolFav('${t.id}', event);" title="${isFav ? 'Remove Favorite' : 'Save Favorite'}">
+                      <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                    </button>
+                  </div>
+                </div>
+                <h4 style="margin-bottom: 0.35rem; font-size: 1.1rem;">${t.name}</h4>
+                <p style="font-size: 0.85rem; line-height: 1.5; margin-bottom: 1.25rem; color: var(--text-secondary);">${t.description}</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle);">
+                  <span style="font-size: 0.85rem; font-weight: 600; color: var(--brand-blue);">Launch Tool <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem;"></i></span>
+                  <span class="badge cat-${t.category}">${t.categoryName}</span>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
 
         if (window.PixelCraftGSAP && window.PixelCraftGSAP.animateNewCards) {
           window.PixelCraftGSAP.animateNewCards(Array.from(grid.querySelectorAll('.card')));
@@ -183,6 +356,8 @@
           PixelCraftUX.initScrollReveal();
         }
       }
+
+      window.toggleToolFav = toggleFavorite;
 
       catBtns.forEach(btn => {
         btn.onclick = () => {

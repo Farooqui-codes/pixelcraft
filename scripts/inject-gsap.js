@@ -35,3 +35,4 @@ files.forEach(file => {
 });
 
 console.log(`\nSuccessfully injected GSAP scripts into ${updated} HTML pages.`);
+

@@ -151,6 +151,7 @@
             // Execute animation suites
             this.initNavbarAnimation();
             this.initHeroAnimation();
+            this.initStatCounters();
             this.initSectionHeaderAnimations();
             this.initCardGridScrollTriggers();
             this.initHighlightsAnimation();
@@ -159,6 +160,38 @@
             this.initButtonMicroInteractions();
             this.initCardHoverEffects();
             this.observeDynamicContent();
+        },
+
+        initStatCounters() {
+            const counters = document.querySelectorAll('.counter-number');
+            if (!counters.length) return;
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.dataset.target, 10) || 0;
+                if (this.prefersReducedMotion) {
+                    counter.textContent = target;
+                    return;
+                }
+
+                const obj = { val: 0 };
+                if (window.gsap && window.ScrollTrigger) {
+                    window.gsap.to(obj, {
+                        val: target,
+                        duration: 1.8,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: counter,
+                            start: 'top 92%',
+                            once: true
+                        },
+                        onUpdate: () => {
+                            counter.textContent = Math.round(obj.val);
+                        }
+                    });
+                } else {
+                    counter.textContent = target;
+                }
+            });
         },
 
         /**
@@ -618,3 +651,4 @@
         PixelCraftGSAP.init();
     }
 })();
+
